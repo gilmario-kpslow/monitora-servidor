@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+
+    </cc:interface>
+    <cc:implementation>
+        <c:menu>
+            <ul class="nav navbar-nav">
+                <li><a href="#{application.contextPath}/web/gerenciar/projeto.xhtml"><span class="fa fa-folder"></span> #{gerenciadorProjetoBean.projeto.nome}</a></li>
+                <li><a href="#{application.contextPath}/web/gerenciar/modulo.xhtml"><span class="fa fa-archive"></span> #{gerenciadorModuloBean.modulo.nome}</a></li>
+                <li><a href="#{application.contextPath}/web/cadastro/atividade.xhtml"><span class="fa fa-sticky-note"></span> Nova Atividade</a></li>
+            </ul>
+        </c:menu>
+    </cc:implementation>
+</ui:composition>

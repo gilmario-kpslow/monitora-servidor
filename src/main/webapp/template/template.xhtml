@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Servidores Master</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="#{application.contextPath}/resources/app/css/app.css"/>
+    </h:head>
+
+    <h:body>
+        <div class="main">
+            <div class="cabecalho">
+                <!--<p:growl autoUpdate="true" showDetail="true" showSummary="true"/>-->
+                <ui:insert name="cabecalho">Cabeçalho</ui:insert>
+            </div>
+            <div class="menu">
+                <ui:insert name="menu">
+                    <a href="#{application.contextPath}">Inicio</a>
+                    <a href="#{application.contextPath}/novo.xhtml">Novo</a>
+                </ui:insert>
+            </div>
+            <div class="conteudo">
+                <ui:insert name="conteudo">Conteudo</ui:insert>
+            </div>
+            <div class="rodape">
+                <ui:insert name="rodape"></ui:insert>
+            </div>
+        </div>
+        <h:outputScript library="jquery" name="js/jquery-2.1.4.min.js"/>
+        <!--<h:outputScript library="jquery" name="js/jquery.maskedinput.min.js"/>-->
+        <!--<h:outputScript library="jquery" name="js/jquery.maskMoney.min.js"/>-->
+        <h:outputScript library="bootstrap" name="js/bootstrap.min.js"/>
+        <h:outputScript library="app" name="js/app.js"/>
+    </h:body>
+</ui:composition>
+

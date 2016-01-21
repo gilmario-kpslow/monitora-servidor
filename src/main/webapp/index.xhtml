@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes">
+
+    <ui:define name="conteudo">
+        <h:form>
+            <c:outputMensagens/>
+            <c:panel id="panel">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h:commandLink styleClass="fa fa-desktop btn btn-primary form-control" value=" DashBoard">
+                            <f:ajax event="click" listener="#{dashBoard.dashboard()}" render="@form"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-md-3">
+                        <h:commandLink styleClass="fa fa-link btn btn-default form-control" action="novo" value=" Novo"/>
+                    </div>
+                </div>
+            </c:panel>
+            <c:outputRender  rendered="#{dashBoard.pagina == 'board'}">
+                <c:panel titulo="Servidores monitorados">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h:outputText value="Nome"/>
+                                        </th>
+                                        <th>
+                                            <h:outputText value="IP"/>
+                                        </th>
+                                        <th>
+                                            <h:outputText value="Serviços"/>
+                                        </th>
+                                        <th>
+                                            <h:outputText value="Status"/>
+                                        </th>
+                                        <th>
+                                            <h:outputText value="Ultimo teste"/>
+                                        </th>
+                                        <th>
+                                            <h:outputText value="Atualizar"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{dashBoard.listaDeServidores}" var="servidor">
+                                        <tr class="#{servidor.status}">
+                                            <td>
+                                                <h:outputText value="#{servidor.nome}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{servidor.ip}"/>
+                                            </td>
+                                            <td class="#{servidor.servicosAtivos.size() != servidor.listaDeServico.size()?'Inativo':''}">
+                                                <h:commandLink value="#{servidor.servicosAtivos.size()} de #{servidor.listaDeServico.size()} ativos">
+                                                    <f:setPropertyActionListener value="#{servidor}" target="#{dashBoard.selecionado}"/>
+                                                    <f:ajax event="click" render="@form" listener="#{dashBoard.mostraServicos()}"/>
+                                                </h:commandLink>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{servidor.status}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{servidor.ultimoTeste.time}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                                </h:outputText>
+                                            </td>
+                                            <td>
+                                                <h:commandLink styleClass="fa fa-refresh btn btn-primary">
+                                                    <f:ajax event="click" render="@form" listener="#{dashBoard.testarServidor(servidor)}"/>
+                                                </h:commandLink>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </c:panel>
+            </c:outputRender>
+            <c:outputRender rendered="#{dashBoard.pagina == 'novo_servico'}">
+                <c:panel titulo="Cadastrar novo Servico">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:outputLabel value="Servidor" for="servidor"/>
+                            <div>
+                                <h:inputText value="#{dashBoard.selecionado.nome}" id="servidor" readonly="true" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h:outputLabel value="IP" for="ip"/>
+                            <div>
+                                <h:inputText value="#{dashBoard.selecionado.ip}" id="ip" readonly="true" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h:outputLabel value="Nome" for="nome"/>
+                            <div>
+                                <h:inputText value="#{cadastraServicoBean.servico.nome}" id="nome" required="true" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h:outputLabel value="Porta" for="porta"/>
+                            <div>
+                                <h:inputText value="#{cadastraServicoBean.servico.porta}" id="porta" required="true" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h:outputLabel value="Contexto" for="contexto"/>
+                            <div>
+                                <h:inputText value="#{cadastraServicoBean.servico.contexto}" id="contexto" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h:outputLabel value="Tipo se Servico" for="tipo_servico"/>
+                            <div>
+                                <h:selectOneMenu value="#{cadastraServicoBean.servico.tipoServico}" id="tipo_servico" required="true" styleClass="col-md-12">
+                                    <f:selectItems var="tipo" value="#{cadastraServicoBean.tiposServico}" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div>
+                            <h:commandLink value=" Salvar" styleClass="fa fa-save btn btn-default">
+                                <f:ajax event="click" render="@form" listener="#{cadastraServicoBean.salvar()}"/>
+                            </h:commandLink>
+                            <h:commandLink value=" Cancelar" styleClass="fa fa-ban btn btn-default">
+                                <f:ajax event="click" render="@form" listener="#{dashBoard.dashboard()}" immediate="true"/>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </c:panel>
+            </c:outputRender>
+            <c:panel titulo="Servicos" rendered="#{dashBoard.pagina == 'servicos'}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h:outputText value="Servidor: #{dashBoard.selecionado.nome}"/>
+                    </div>
+                    <div>
+                        <h:outputText value="IP: #{dashBoard.selecionado.ip}"/>
+                    </div>
+                    <div>
+                        <h:commandLink value=" Registrar Novo Serviço" styleClass="fa fa-plus btn btn-default">
+                            <f:ajax event="click" render="@form" listener="#{dashBoard.cadastroServico()}" immediate="true"/>
+                        </h:commandLink>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <h:outputText value="Nome"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Porta"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Contexto"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Ultima resposta"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Ação"/>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{dashBoard.selecionado.listaDeServico}" var="servico">
+                                            <tr class="#{servico.statusServico}">
+                                                <td>
+                                                    <h:outputText value="#{servico.nome}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.porta}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.contexto}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.statusServico}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.ultimaResposta.time}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                                    </h:outputText>
+                                                </td>
+                                                <td>
+                                                    <h:commandLink styleClass="fa fa-check">
+                                                        <f:ajax event="click" listener="#{dashBoard.testarServico(servico)}" render="@form"/>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

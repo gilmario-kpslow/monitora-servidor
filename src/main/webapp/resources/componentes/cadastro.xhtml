@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="cadastro" required="true" type="br.com.truesystem.projetosweb.bean.BeanCadastroImplemente"/>
+        <cc:attribute name="consulta"  type="br.com.truesystem.projetosweb.bean.BeanConsultaImplemente" default="#{null}"/>
+        <cc:attribute name="titulo" default="titulo"/>
+        <cc:attribute name="icon" default=""/>
+    </cc:interface>
+    <cc:implementation>
+        <c:outputMensagens />
+        <c:panel titulo="Cadastro de #{cc.attrs.titulo}" rendered="#{cc.attrs.cadastro.ativo}" icon="#{cc.attrs.icon}">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h:commandLink styleClass="btn btn-primary fa fa-arrow-circle-left disabled" disabled="true"/>
+                    <h:commandLink rendered="#{cc.attrs.consulta != null}" styleClass="btn btn-primary fa fa-arrow-circle-right" immediate="true">
+                        <f:ajax event="click" execute="@this" immediate="true" listener="#{cc.attrs.cadastro.esconder()}" render="@form"/>
+                        <f:ajax event="click" execute="@this" immediate="true" listener="#{cc.attrs.consulta.mostrar()}" render="@form"/>
+                    </h:commandLink>
+                    <h:commandLink styleClass="btn btn-primary fa fa-save">
+                        <f:ajax event="click" execute="@form" render="@form" listener="#{cc.attrs.cadastro.salvar()}"/>
+                    </h:commandLink>
+                    <cc:renderFacet name="comandos"></cc:renderFacet>
+                    <cc:insertFacet name="comandos"></cc:insertFacet>
+                </div>
+            </div>
+            <cc:insertChildren/>
+        </c:panel>
+        <c:panel rendered="#{cc.attrs.consulta.ativo}" titulo="Consulta de #{cc.attrs.titulo}">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h:commandLink styleClass="btn btn-primary fa fa-arrow-circle-left" immediate="true">
+                        <f:ajax event="click" render="@form" execute="@this" listener="#{cc.attrs.cadastro.mostrar()}"/>
+                        <f:ajax event="click" render="@form" execute="@this" listener="#{cc.attrs.consulta.esconder()}"/>
+                    </h:commandLink>
+                    <h:commandLink styleClass="btn btn-primary fa fa-arrow-circle-right disabled" disabled="true"/>
+                    <h:commandLink styleClass="btn btn-primary fa fa-search">
+                        <f:ajax event="click" render="@form" execute="@form" listener="#{cc.attrs.consulta.buscar()}"/>
+                    </h:commandLink>
+                </div>
+            </div>
+            <cc:renderFacet name="consulta"></cc:renderFacet>
+            <cc:insertFacet name="consulta"></cc:insertFacet>
+        </c:panel>
+    </cc:implementation>
+
+
+</ui:composition>
+

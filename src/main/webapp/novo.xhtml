@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="conteudo">
+        <h:form>
+            <c:outputMensagens/>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <c:panel titulo="Cadastro de servidores">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h:outputLabel value="Nome" for="nome"/>
+                                <div>
+                                    <h:inputText value="#{cadastraServidorBean.servidor.nome}" id="nome" class="form-control" required="true"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="Descrição" for="descricao"/>
+                                <div>
+                                    <h:inputText class="form-control" value="#{cadastraServidorBean.servidor.descricao}" id="descricao" required="true"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="ip" for="ip"/>
+                                <h:inputText value="#{cadastraServidorBean.servidor.ip}" id="ip" required="true" class="form-control"/>
+                            </div>
+                        </div>
+                        <f:facet name="footer">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h:commandLink value=" Salvar" class="btn btn-primary fa fa-save form-control">
+                                        <f:ajax event="click" render="@form" listener="#{cadastraServidorBean.salvar()}" execute="@form" class="form-control"/>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+                        </f:facet>
+                    </c:panel>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
