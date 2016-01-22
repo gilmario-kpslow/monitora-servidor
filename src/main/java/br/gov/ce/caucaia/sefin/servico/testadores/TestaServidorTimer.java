@@ -23,7 +23,7 @@ public class TestaServidorTimer implements Serializable {
     private ServidorServico servico;
     private static final Logger LOG = Logger.getLogger(TestaServidorTimer.class.getName());
 
-    @Schedule(hour = "*", minute = "*", second = "*/15")
+//    @Schedule(hour = "*", minute = "*", second = "*/15")
     public void testarServidores() {
         List<Servidor> listaDeServidores = servico.buscar();
         for (Servidor s : listaDeServidores) {

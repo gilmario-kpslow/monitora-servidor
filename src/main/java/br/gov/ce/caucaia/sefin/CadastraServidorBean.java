@@ -1,9 +1,12 @@
 package br.gov.ce.caucaia.sefin;
 
 import br.gov.ce.caucaia.sefin.entidade.Servidor;
+import br.gov.ce.caucaia.sefin.entidade.TipoServidor;
 import br.gov.ce.caucaia.sefin.servico.ServidorServico;
 import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -39,6 +42,10 @@ public class CadastraServidorBean implements Serializable {
         } catch (Exception e) {
             MensagemUtil.mensagem("Erro", e.getMessage(), FacesMessage.SEVERITY_ERROR);
         }
+    }
+
+    public List<TipoServidor> getTipos() {
+        return Arrays.asList(TipoServidor.values());
     }
 
     public Servidor getServidor() {

@@ -11,5 +11,5 @@ package br.gov.ce.caucaia.sefin.entidade;
  */
 public enum TipoServidor {
 
-    Real, Virtual
+    Host, Virtual
 }

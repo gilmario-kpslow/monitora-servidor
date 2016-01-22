@@ -8,7 +8,6 @@ import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -56,6 +55,10 @@ public class DashBoard implements Serializable {
         pagina = "novo_servico";
     }
 
+    public void cadastroServidor() {
+        pagina = "novo_servidor";
+    }
+
     public void dashboard() {
         pagina = "board";
     }
@@ -68,7 +71,8 @@ public class DashBoard implements Serializable {
         this.selecionado = selecionado;
     }
 
-    public void mostraServicos() {
+    public void mostraServicos(Servidor servidor) {
+        this.selecionado = servidor;
         pagina = "servicos";
     }
 

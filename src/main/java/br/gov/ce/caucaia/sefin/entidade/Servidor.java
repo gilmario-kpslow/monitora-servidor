@@ -38,7 +38,17 @@ public class Servidor implements Serializable {
     @Column(nullable = false, length = 1048)
     private String descricao;
     @Column(nullable = false)
-    private String funcao;
+    private String funcionalidade;
+    @Column(nullable = false)
+    private String sistemaOperacional;
+    @Column(nullable = false)
+    private String HD;
+    @Column(nullable = false)
+    private String memoria;
+    @Column(nullable = false)
+    private String processador;
+    @Column(nullable = false)
+    private Integer qtdProcessador;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoServidor tipo;
@@ -63,12 +73,52 @@ public class Servidor implements Serializable {
         return ativos;
     }
 
-    public String getFuncao() {
-        return funcao;
+    public String getFuncionalidade() {
+        return funcionalidade;
     }
 
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
+    public void setFuncionalidade(String funcionalidade) {
+        this.funcionalidade = funcionalidade;
+    }
+
+    public String getSistemaOperacional() {
+        return sistemaOperacional;
+    }
+
+    public void setSistemaOperacional(String sistemaOperacional) {
+        this.sistemaOperacional = sistemaOperacional;
+    }
+
+    public String getHD() {
+        return HD;
+    }
+
+    public void setHD(String HD) {
+        this.HD = HD;
+    }
+
+    public String getMemoria() {
+        return memoria;
+    }
+
+    public void setMemoria(String memoria) {
+        this.memoria = memoria;
+    }
+
+    public String getProcessador() {
+        return processador;
+    }
+
+    public void setProcessador(String processador) {
+        this.processador = processador;
+    }
+
+    public Integer getQtdProcessador() {
+        return qtdProcessador;
+    }
+
+    public void setQtdProcessador(Integer qtdProcessador) {
+        this.qtdProcessador = qtdProcessador;
     }
 
     public TipoServidor getTipo() {
