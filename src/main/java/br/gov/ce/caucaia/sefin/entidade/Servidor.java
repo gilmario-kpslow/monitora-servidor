@@ -35,8 +35,13 @@ public class Servidor implements Serializable {
     private String ip;
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1048)
     private String descricao;
+    @Column(nullable = false)
+    private String funcao;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoServidor tipo;
     @Enumerated(EnumType.STRING)
     private StatusServidor status;
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,6 +61,22 @@ public class Servidor implements Serializable {
             }
         }
         return ativos;
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+
+    public TipoServidor getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoServidor tipo) {
+        this.tipo = tipo;
     }
 
     public void testar() throws IOException {
