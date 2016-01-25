@@ -17,12 +17,33 @@
     <h:body>
         <div class="main">
             <div class="cabecalho">
-                <ui:insert name="cabecalho">Cabeçalho</ui:insert>
+                <ui:insert name="cabecalho"></ui:insert>
             </div>
             <div class="menu">
                 <ui:insert name="menu">
-                    <a href="#{application.contextPath}">Inicio</a>
-                    <a href="#{application.contextPath}/novo.xhtml">Novo</a>
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="true">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#{application.contextPath}">Inicio</a>
+                            </div>
+
+                            <div class="collapse navbar-collapse" id="menu">
+                                <ul class="nav navbar-nav">
+                                    <!--<li><a href="{application.contextPath}">DashBoard</a></li>-->
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#{application.contextPath}/login">Login</a></li>
+                                    <li><a href="#{application.contextPath}/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </ui:insert>
             </div>
             <div class="conteudo">

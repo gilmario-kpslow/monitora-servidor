@@ -17,7 +17,7 @@
                         </h:commandLink>
                     </div>
                     <div class="col-md-3">
-                        <h:commandLink styleClass="fa fa-desktop btn btn-primary form-control" value=" Novo Servidor">
+                        <h:commandLink styleClass="fa fa-amazon btn btn-primary form-control" value=" Novo Servidor">
                             <f:ajax event="click" listener="#{dashBoard.cadastroServidor()}" render="@form"/>
                         </h:commandLink>
                     </div>
@@ -73,6 +73,9 @@
                                                 </h:outputText>
                                             </td>
                                             <td>
+                                                <h:commandLink styleClass="fa fa-check btn btn-success">
+                                                    <f:ajax event="click" render="@form" listener="#{dashBoard.mostraServicos(servidor)}"/>
+                                                </h:commandLink>
                                                 <h:commandLink styleClass="fa fa-refresh btn btn-primary">
                                                     <f:ajax event="click" render="@form" listener="#{dashBoard.testarServidor(servidor)}"/>
                                                 </h:commandLink>
@@ -94,20 +97,21 @@
                         <c:panel titulo="Cadastro de servidores">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Nome: " for="nome"/>
-                                    <!--<h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />-->
+                                    <h:outputLabel value="Nome: " for="nome" styleClass="label label-primary"/>
+                                    <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
                                         <h:inputText value="#{cadastraServidorBean.servidor.nome}" id="nome" class="form-control" requiredMessage="Informe o nome" required="true"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h:outputLabel value="ip" for="ip"/>
+                                    <h:outputLabel value="IP" for="ip" styleClass="label label-primary"/>
+                                    <h:message for="ip" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.ip}" readonly="#{cadastraServidorBean.servidor.ip != null}" id="ip" required="true" class="form-control"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.ip}" requiredMessage="Informe o IP do servidor" readonly="#{cadastraServidorBean.servidor.ip != null}" id="ip" required="true" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h:outputLabel value="Tipo de Servidor" for="tipo"/>
+                                    <h:outputLabel value="Tipo de Servidor" for="tipo" styleClass="label label-primary"/>
                                     <div>
                                         <h:selectOneMenu id="tipo" class="form-control" value="#{cadastraServidorBean.servidor.tipo}" required="true">
                                             <f:selectItems value="#{cadastraServidorBean.tipos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"/>
@@ -115,47 +119,53 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Sistema Operacional" for="sistema"/>
+                                    <h:outputLabel value="Sistema Operacional" for="sistema" styleClass="label label-primary"/>
+                                    <h:message for="sistema" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.sistemaOperacional}" id="sistema" class="form-control" required="true"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.sistemaOperacional}" requiredMessage="Informe o sistema operacional" id="sistema" class="form-control" required="true"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Funcionalidade" for="funcao"/>
+                                    <h:outputLabel value="Funcionalidade" for="funcao" styleClass="label label-primary"/>
+                                    <h:message for="funcao" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.funcionalidade}" id="funcao" class="form-control" required="true"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.funcionalidade}" id="funcao" required="true" requiredMessage="Informe uma funcionalidade" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h:outputLabel value="Armazenamento (HD)" for="hd"/>
+                                    <h:outputLabel value="Armazenamento (HD)" for="hd" styleClass="label label-primary"/>
+                                    <h:message for="hd" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.HD}" id="hd" class="form-control" required="true"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.HD}" id="hd" requiredMessage="Informe o tamanho do HD" class="form-control" required="true"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h:outputLabel value="Memoria RAM" for="memoria"/>
-
+                                    <h:outputLabel value="Memoria RAM" for="memoria" styleClass="label label-primary"/>
+                                    <h:message for="memoria" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.memoria}" id="memoria" class="form-control" required="true"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.memoria}" requiredMessage="Informe a quantidade de memoria" id="memoria" class="form-control" required="true"/>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h:outputLabel value="Processador" for="processador"/>
+                                    <h:outputLabel value="Processador" for="processador" styleClass="label label-primary"/>
+                                    <h:message for="processador" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.processador}" id="processador" class="form-control" required="true"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.processador}" id="processador" class="form-control" requiredMessage="informe um processador" required="true"/>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <h:outputLabel value="Quantidade" for="qtd"/>
+                                    <h:outputLabel value="Quantidade" for="qtd" styleClass="label label-primary"/>
+                                    <h:message for="memoria" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
                                         <h:inputText value="#{cadastraServidorBean.servidor.qtdProcessador}" id="qtd" class="form-control" required="true"/>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Descrição" for="descricao"/>
+                                    <h:outputLabel value="Descrição" for="descricao" styleClass="label label-primary"/>
+                                    <h:message for="memoria" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputTextarea class="form-control" value="#{cadastraServidorBean.servidor.descricao}" id="descricao" required="true"/>
+                                        <h:inputTextarea class="form-control" value="#{cadastraServidorBean.servidor.descricao}" id="descricao" required="true" requiredMessage="Informe uma descrição"/>
                                     </div>
                                 </div>
                             </div>
@@ -178,39 +188,41 @@
                         <c:panel titulo="Cadastrar novo Servico">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Servidor" for="servidor"/>
+                                    <h:outputLabel value="Servidor" for="servidor" styleClass="label label-primary"/>
                                     <div>
                                         <h:inputText value="#{dashBoard.selecionado.nome}" id="servidor" readonly="true" styleClass="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="IP" for="ip"/>
+                                    <h:outputLabel value="IP" for="ip" styleClass="label label-primary"/>
                                     <div>
                                         <h:inputText value="#{dashBoard.selecionado.ip}" id="ip" readonly="true" styleClass="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Nome" for="nome"/>
+                                    <h:outputLabel value="Nome" for="nome" styleClass="label label-primary"/>
+                                    <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServicoBean.servico.nome}" id="nome" required="true" styleClass="form-control"/>
+                                        <h:inputText value="#{cadastraServicoBean.servico.nome}" id="nome" requiredMessage="Informe o nome do serviço" required="true" styleClass="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Porta" for="porta"/>
+                                    <h:outputLabel value="Porta" for="porta" styleClass="label label-primary"/>
+                                    <h:message for="porta" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServicoBean.servico.porta}" id="porta" required="true" styleClass="form-control"/>
+                                        <h:inputText value="#{cadastraServicoBean.servico.porta}" id="porta" required="true" styleClass="form-control" requiredMessage="Informe a porta do serviço"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Contexto" for="contexto"/>
+                                    <h:outputLabel value="Contexto" for="contexto" styleClass="label label-primary"/>
                                     <div>
                                         <h:inputText value="#{cadastraServicoBean.servico.contexto}" id="contexto" styleClass="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Tipo se Servico" for="tipo_servico"/>
+                                    <h:outputLabel value="Tipo se Servico" for="tipo_servico" styleClass="label label-primary"/>
                                     <div>
-                                        <h:selectOneMenu value="#{cadastraServicoBean.servico.tipoServico}" id="tipo_servico" required="true" styleClass="form-control">
+                                        <h:selectOneMenu value="#{cadastraServicoBean.servico.tipoServico}" id="tipo_servico" styleClass="form-control">
                                             <f:selectItems var="tipo" value="#{cadastraServicoBean.tiposServico}" itemLabel="#{tipo}" itemValue="#{tipo}"/>
                                         </h:selectOneMenu>
                                     </div>
@@ -219,7 +231,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <h:commandLink value=" Salvar" styleClass="fa fa-save btn btn-primary form-control">
-                                                <f:ajax event="click" render="@form" listener="#{cadastraServicoBean.salvar()}"/>
+                                                <f:ajax event="click" render="@form" execute="@form" listener="#{cadastraServicoBean.salvar()}"/>
                                             </h:commandLink>
                                         </div>
                                         <div class="col-md-3">
@@ -234,79 +246,126 @@
                     </div>
                 </div>
             </c:outputRender>
-            <c:panel titulo="Servicos" rendered="#{dashBoard.pagina == 'servicos'}">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h:outputLabel value="Servidor: "/>
-                        <h:outputText value="#{dashBoard.selecionado.nome}"/>
-                    </div>
-                    <div class="col-md-4">
-                        <h:outputLabel value="IP: "/>
-                        <h:outputText value="#{dashBoard.selecionado.ip}"/>
-                    </div>
-                    <div class="col-md-2">
-                        <h:commandLink value=" Registrar Novo Serviço" styleClass="fa fa-plus btn btn-default form-control">
-                            <f:ajax event="click" render="@form" listener="#{dashBoard.cadastroServico()}" immediate="true"/>
-                        </h:commandLink>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <h:outputText value="Nome"/>
-                                    </th>
-                                    <th>
-                                        <h:outputText value="Porta"/>
-                                    </th>
-                                    <th>
-                                        <h:outputText value="Contexto"/>
-                                    </th>
-                                    <th>
-                                        <h:outputText value="Ultima resposta"/>
-                                    </th>
-                                    <th>
-                                        <h:outputText value="Ação"/>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ui:repeat value="#{dashBoard.selecionado.listaDeServico}" var="servico">
-                                    <tr class="#{servico.statusServico}">
-                                        <td>
-                                            <h:outputText value="#{servico.nome}"/>
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{servico.porta}"/>
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{servico.contexto}"/>
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{servico.statusServico}"/>
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{servico.ultimaResposta.time}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
-                                            </h:outputText>
-                                        </td>
-                                        <td>
-                                            <h:commandLink styleClass="fa fa-check">
-                                                <f:ajax event="click" listener="#{dashBoard.testarServico(servico)}" render="@form"/>
-                                            </h:commandLink>
-                                        </td>
-                                    </tr>
-                                </ui:repeat>
-                            </tbody>
-                            <tfoot>
+            <c:outputRender rendered="#{dashBoard.pagina == 'servicos'}">
+                <c:panel titulo="Servicos">
+                    <c:campo titulo="Dados do Servidor">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h:outputLabel value="Servidor: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.nome}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="IP: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.ip}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="HD: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.HD}"/>
+                            </div>
 
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </c:panel>
+                            <div class="col-md-4">
+                                <h:outputLabel value="Função: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.funcionalidade}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="Memória: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.memoria}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="Processador: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.qtdProcessador} - #{dashBoard.selecionado.processador}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="Sistema operacional: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.sistemaOperacional}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="Tipo: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.tipo}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel value="Status: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.status}"/>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="Descrição: "/>
+                                <h:outputText value=" #{dashBoard.selecionado.descricao}"/>
+                            </div>
+                        </div>
+                    </c:campo>
+                    <c:campo titulo="Serviços Registrados">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4">
+                                <h:commandLink value=" Novo Serviço" styleClass="fa fa-plus btn btn-primary form-control">
+                                    <f:ajax event="click" render="@form" listener="#{dashBoard.cadastroServico()}" immediate="true"/>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <h:outputText value="Nome"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Porta"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Tipo"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Contexto"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Ultima resposta"/>
+                                            </th>
+                                            <th>
+                                                <h:outputText value="Ação"/>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{dashBoard.selecionado.listaDeServico}" var="servico">
+                                            <tr class="#{servico.statusServico}">
+                                                <td>
+                                                    <h:outputText value="#{servico.nome}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.porta}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.tipoServico}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.contexto}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.statusServico}"/>
+                                                </td>
+                                                <td>
+                                                    <h:outputText value="#{servico.ultimaResposta.time}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                                    </h:outputText>
+                                                </td>
+                                                <td>
+                                                    <h:commandLink styleClass="fa fa-check btn btn-success" title="Testar servico">
+                                                        <f:ajax event="click" listener="#{dashBoard.testarServico(servico)}" render="@form"/>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </c:campo>
+                </c:panel>
+            </c:outputRender>
         </h:form>
     </ui:define>
 </ui:composition>
