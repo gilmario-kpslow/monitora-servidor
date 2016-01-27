@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 /**
@@ -18,7 +18,7 @@ import javax.inject.Named;
  * @author gilmario
  */
 @Named
-@SessionScoped
+@ApplicationScoped
 public class DashBoard implements Serializable {
 
     private List<Servidor> listaDeServidores;
@@ -95,4 +95,5 @@ public class DashBoard implements Serializable {
             MensagemUtil.mensagem(e.getMessage());
         }
     }
+
 }

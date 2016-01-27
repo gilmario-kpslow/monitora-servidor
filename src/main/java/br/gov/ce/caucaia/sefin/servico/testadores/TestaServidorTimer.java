@@ -1,5 +1,6 @@
 package br.gov.ce.caucaia.sefin.servico.testadores;
 
+import br.gov.ce.caucaia.sefin.DashBoard;
 import br.gov.ce.caucaia.sefin.entidade.Servidor;
 import br.gov.ce.caucaia.sefin.servico.ServidorServico;
 import java.io.Serializable;
@@ -21,15 +22,16 @@ public class TestaServidorTimer implements Serializable {
 
     @EJB
     private ServidorServico servico;
+    @EJB
+    private TestadorServidor testadorServidor;
     private static final Logger LOG = Logger.getLogger(TestaServidorTimer.class.getName());
 
-//    @Schedule(hour = "*", minute = "*", second = "*/15")
+    @Schedule(hour = "*", minute = "*", second = "0")
     public void testarServidores() {
         List<Servidor> listaDeServidores = servico.buscar();
         for (Servidor s : listaDeServidores) {
             try {
-                s.testar();
-                servico.atualizar(s);
+                testadorServidor.testar(s);
             } catch (Exception e) {
                 LOG.log(Level.SEVERE, "Erro", e);
             }

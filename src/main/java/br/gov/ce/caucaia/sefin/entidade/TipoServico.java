@@ -2,7 +2,7 @@ package br.gov.ce.caucaia.sefin.entidade;
 
 import br.gov.ce.caucaia.sefin.servico.testadores.TestaServicoWeb;
 import br.gov.ce.caucaia.sefin.servico.testadores.TestaSocket;
-import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServico;
+import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServicoInterface;
 
 /**
  *
@@ -12,13 +12,13 @@ public enum TipoServico {
 
     Web(new TestaServicoWeb()), Banco(new TestaSocket()), Outros(new TestaSocket());
 
-    private final TestadorServico testadorServico;
+    private final TestadorServicoInterface testadorServico;
 
-    private TipoServico(TestadorServico t) {
+    private TipoServico(TestadorServicoInterface t) {
         testadorServico = t;
     }
 
-    public void testar(Servico servico) throws Exception {
-        testadorServico.testar(servico);
+    public boolean testar(Servico servico) throws Exception {
+        return testadorServico.testar(servico);
     }
 }

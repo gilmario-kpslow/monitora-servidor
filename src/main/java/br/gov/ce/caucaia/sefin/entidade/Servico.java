@@ -117,8 +117,8 @@ public class Servico implements Serializable {
         return builder.toString();
     }
 
-    public void testar() throws Exception {
-        getTipoServico().testar(this);
+    public boolean testar() throws Exception {
+        return getTipoServico().testar(this);
     }
 
     @Override

@@ -4,7 +4,6 @@ import br.gov.ce.caucaia.sefin.entidade.Servico;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -22,15 +21,16 @@ public class TesteServicoTimer implements Serializable {
 
     @EJB
     private ServicoServico servico;
+    @EJB
+    private TestadorServico testadorServico;
     private static final Logger LOG = Logger.getLogger(TesteServicoTimer.class.getName());
 
-//    @Schedule(hour = "*", minute = "*", second = "*/30")
+    @Schedule(hour = "*", minute = "*", second = "30")
     public void testaServicos() {
         List<Servico> servicos = servico.buscarServicosTestaveis();
         for (Servico s : servicos) {
             try {
-                s.testar();
-                servico.atualizar(s);
+                testadorServico.testar(s);
             } catch (Exception e) {
                 LOG.log(Level.SEVERE, "Erro", e);
             }

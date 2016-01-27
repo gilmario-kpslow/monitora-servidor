@@ -7,7 +7,7 @@
                 xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes">
 
     <ui:define name="conteudo">
-        <h:form>
+        <h:form id="form">
             <c:outputMensagens/>
             <c:panel id="panel">
                 <div class="row">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </c:panel>
-            <c:outputRender  rendered="#{dashBoard.pagina == 'board'}">
+            <c:outputRender rendered="#{dashBoard.pagina == 'board'}">
                 <c:panel titulo="Servidores monitorados">
                     <div class="row">
                         <div class="col-md-12">
