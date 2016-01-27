@@ -1,7 +1,10 @@
 var conexao;
 function iniciaConexao() {
-    conexao = new WebSocket("ws://localhost:8080/testador/connector");
+    var url = new String(document.location.href);
+    var path = url.replace("http://" + document.location.host, "");
+    path = path.replace("/notificador.xhtml", "");
 
+    conexao = new WebSocket("ws://" + document.location.host + path + "/connector");
     conexao.onmessage = (function (evt) {
         update();
         console.log(evt.data);
