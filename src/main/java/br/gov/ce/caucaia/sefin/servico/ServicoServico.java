@@ -22,6 +22,7 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
 
     @Override
     public void excluir(Servico t) {
+        t = carregar(t.getId());
         dao.excluir(t);
     }
 

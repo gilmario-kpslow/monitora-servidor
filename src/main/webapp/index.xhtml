@@ -353,6 +353,9 @@
                                                     <h:commandLink styleClass="fa fa-check btn btn-success" title="Testar servico">
                                                         <f:ajax event="click" listener="#{dashBoard.testarServico(servico)}" render="@form"/>
                                                     </h:commandLink>
+                                                    <h:commandLink styleClass="fa fa-trash btn btn-danger" title="Excluir Serviço">
+                                                        <f:ajax event="click" listener="#{cadastraServicoBean.excluir(servico)}" render="@form"/>
+                                                    </h:commandLink>
                                                 </td>
                                             </tr>
                                         </ui:repeat>

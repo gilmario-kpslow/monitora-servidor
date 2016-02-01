@@ -60,6 +60,17 @@ public class CadastraServicoBean implements Serializable {
         }
     }
 
+    public void excluir(Servico servico) {
+        try {
+            board.mostraServicos(servico.getServidor());
+            servicoServico.excluir(servico);
+            board.atualizar();
+            MensagemUtil.mensagem("servico excluido");
+        } catch (Exception e) {
+            MensagemUtil.mensagem("Erro", e.getMessage(), FacesMessage.SEVERITY_ERROR);
+        }
+    }
+
     public List<TipoServico> getTiposServico() {
         return Arrays.asList(TipoServico.values());
     }
