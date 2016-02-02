@@ -27,7 +27,7 @@ public class Servico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(nullable = false)
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Servidor servidor;
     @Column(nullable = false)
     private String nome;

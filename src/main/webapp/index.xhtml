@@ -79,6 +79,9 @@
                                                 <h:commandLink styleClass="fa fa-refresh btn btn-primary">
                                                     <f:ajax event="click" render="@form" listener="#{dashBoard.testarServidor(servidor)}"/>
                                                 </h:commandLink>
+                                                <h:commandLink styleClass="fa fa-trash btn btn-danger">
+                                                    <f:ajax event="click" render="@form" listener="#{dashBoard.removerServidor(servidor)}"/>
+                                                </h:commandLink>
                                             </td>
                                         </tr>
                                     </ui:repeat>

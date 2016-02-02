@@ -56,7 +56,7 @@ public class Servidor implements Serializable {
     private StatusServidor status;
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar ultimoTeste;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, mappedBy = "servidor")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "servidor")
     private final List<Servico> listaDeServico;
 
     public Servidor() {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.gov.ce.caucaia.sefin.util;
 
 import org.junit.After;
@@ -39,11 +34,13 @@ public class TestaConexaoWebTest {
 
     /**
      * Test of testar method, of class TestaConexaoWeb.
+     *
+     * @throws java.lang.Exception
      */
     @Test
     public void testTestar() throws Exception {
         System.out.println("testar");
-        String path = "http://10.100.0.12/alvara";
+        String path = "http://10.100.0.56:8080";
         TestaConexaoWeb instance = new TestaConexaoWeb();
         boolean expResult = true;
         boolean result = instance.testar(path);

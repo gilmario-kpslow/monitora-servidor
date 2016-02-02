@@ -4,6 +4,7 @@ import br.gov.ce.caucaia.sefin.DashBoard;
 import br.gov.ce.caucaia.sefin.util.TestadorDePing;
 import br.gov.ce.caucaia.sefin.entidade.Servidor;
 import br.gov.ce.caucaia.sefin.entidade.StatusServidor;
+import br.gov.ce.caucaia.sefin.servico.EstatisticaServidorServico;
 import br.gov.ce.caucaia.sefin.servico.ServidorServico;
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ import javax.inject.Inject;
 @Stateless
 public class TestadorServidor implements Serializable {
 
-    private TestadorDePing ping;
+    private final TestadorDePing ping;
     @EJB
     private ServidorServico servico;
     @EJB
@@ -29,6 +30,8 @@ public class TestadorServidor implements Serializable {
     @Inject
     private DashBoard dashBoard;
     private static final Logger LOG = Logger.getLogger(TestadorServidor.class.getName());
+    @EJB
+    private EstatisticaServidorServico ess;
 
     public TestadorServidor() {
         ping = new TestadorDePing();
@@ -40,12 +43,14 @@ public class TestadorServidor implements Serializable {
             if (!StatusServidor.Ativo.equals(servidor.getStatus())) {
                 servidor.setStatus(StatusServidor.Ativo);
                 dashBoard.atualizar();
+                ess.notificarAtivacao(servidor);
                 connector.enviarMensagem("Servidor " + servidor.getNome() + " ativo");
                 LOG.log(Level.INFO, "mensagem enviada");
             }
         } else if (!StatusServidor.Inativo.equals(servidor.getStatus())) {
             servidor.setStatus(StatusServidor.Inativo);
             dashBoard.atualizar();
+            ess.notificarDesativacao(servidor);
             connector.enviarMensagem("Servidor " + servidor.getNome() + " offline");
             LOG.log(Level.INFO, "mensagem enviada");
         }

@@ -45,7 +45,7 @@ public class TestadorDePingTest {
     @org.junit.Test
     public void testTestaPing() throws Exception {
         System.out.println("testaPing");
-        String ip = "money-gilserver.rhcloud.com";
+        String ip = "localhost";
         TestadorDePing instance = new TestadorDePing();
         assertTrue(instance.testaPing(ip));
     }

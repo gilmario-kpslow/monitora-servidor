@@ -96,4 +96,13 @@ public class DashBoard implements Serializable {
         }
     }
 
+    public void removerServidor(Servidor s) {
+        try {
+            servico.excluir(s);
+            MensagemUtil.mensagem("Servidor com sucesso");
+        } catch (Exception e) {
+            MensagemUtil.mensagem(e.getMessage());
+        }
+    }
+
 }
