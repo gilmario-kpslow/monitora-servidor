@@ -40,15 +40,15 @@ public class TestaConexaoWebTest {
     /**
      * Test of testar method, of class TestaConexaoWeb.
      */
-//    @Test
-//    public void testTestar() throws Exception {
-//        System.out.println("testar");
-//        String path = "http://10.100.0.48/alvara";
-//        TestaConexaoWeb instance = new TestaConexaoWeb();
-//        boolean expResult = true;
-//        boolean result = instance.testar(path);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//
-//    }
+    @Test
+    public void testTestar() throws Exception {
+        System.out.println("testar");
+        String path = "http://10.100.0.12/alvara";
+        TestaConexaoWeb instance = new TestaConexaoWeb();
+        boolean expResult = true;
+        boolean result = instance.testar(path);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+
+    }
 }
