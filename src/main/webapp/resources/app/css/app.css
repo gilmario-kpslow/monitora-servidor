@@ -27,4 +27,16 @@ body {
     background: greenyellow;
 }
 
+.mostrador{
+    top: 0;
+    right: 0;
+    position: absolute;
+    transition-duration: 1s;
+}
+
+.mostrador:hover {
+    font-size: 30pt;
+    transition-duration: 1s;
+}
+
 

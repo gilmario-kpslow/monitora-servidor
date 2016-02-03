@@ -7,6 +7,9 @@
                 xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes">
 
     <ui:define name="conteudo">
+        <div class="mostrador">
+            <span class="fa fa-refresh fa-spin text-info" title="Online Aguradando requisições"></span>
+        </div>
         <h:form id="form">
             <c:outputMensagens/>
             <c:panel id="panel">
@@ -19,6 +22,11 @@
                     <div class="col-md-3">
                         <h:commandLink styleClass="fa fa-amazon btn btn-primary form-control" value=" Novo Servidor">
                             <f:ajax event="click" listener="#{dashBoard.cadastroServidor()}" render="@form"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-md-1">
+                        <h:commandLink styleClass="fa fa-refresh btn btn-primary form-control">
+                            <f:ajax event="click" listener="#{dashBoard.atualizar()}" render="@form"/>
                         </h:commandLink>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 var conexao;
 function iniciaConexao() {
+    $(".mostrador").hide("slow");
     var url = new String(document.location.href);
     var path = url.replace("http://" + document.location.host, "");
     path = path.replace("/notificador.xhtml", "");
@@ -14,6 +15,7 @@ function iniciaConexao() {
     });
     conexao.onopen = (function () {
         console.log('open');
+        $(".mostrador").show("slow");
     });
 }
 function update() {
