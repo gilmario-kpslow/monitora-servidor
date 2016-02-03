@@ -5,6 +5,8 @@
  */
 package br.gov.ce.caucaia.sefin.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,16 +44,18 @@ public class EnviaEmailUtilTest {
      */
     @Test
     public void testEnviar() {
-        System.out.println("enviar");
+//        System.out.println("enviar");
         try {
 //            EnviaEmailUtil instance = new EnviaEmailUtil();
-//            instance.enviar();
+//            instance.enviar("gilmario@sefin.caucaia.ce.gov.br", "Atenção", "Foram detctados problemas nos servidores");
+//            instance.enviar("gilmario@sefin.caucaia.ce.gov.br", "Atenção", "Foram detctados ");
             assertTrue(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.SEVERE, "Erro", e);
             fail("Exceção");
         }
 
     }
+    private static final Logger LOG = Logger.getLogger(EnviaEmailUtilTest.class.getName());
 
 }

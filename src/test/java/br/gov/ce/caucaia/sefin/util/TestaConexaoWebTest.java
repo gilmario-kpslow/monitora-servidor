@@ -40,7 +40,7 @@ public class TestaConexaoWebTest {
     @Test
     public void testTestar() throws Exception {
         System.out.println("testar");
-        String path = "http://10.100.0.56:8080";
+        String path = "http://localhost";
         TestaConexaoWeb instance = new TestaConexaoWeb();
         boolean expResult = true;
         boolean result = instance.testar(path);

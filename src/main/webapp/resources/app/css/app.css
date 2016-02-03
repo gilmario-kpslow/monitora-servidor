@@ -35,7 +35,6 @@ body {
 }
 
 .mostrador:hover {
-    font-size: 30pt;
     transition-duration: 1s;
 }
 

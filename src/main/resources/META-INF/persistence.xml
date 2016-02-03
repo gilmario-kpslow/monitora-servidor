@@ -7,6 +7,7 @@
         <class>br.gov.ce.caucaia.sefin.entidade.Servico</class>
         <class>br.gov.ce.caucaia.sefin.entidade.EstatisticaServico</class>
         <class>br.gov.ce.caucaia.sefin.entidade.EstatisticaServidor</class>
+        <class>br.gov.ce.caucaia.sefin.entidade.Configuracao</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

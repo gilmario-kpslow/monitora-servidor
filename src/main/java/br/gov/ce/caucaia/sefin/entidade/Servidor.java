@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import javax.mail.MessagingException;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -129,7 +130,7 @@ public class Servidor implements Serializable {
         this.tipo = tipo;
     }
 
-    public void testar() throws IOException {
+    public void testar() throws IOException, MessagingException {
         new TestadorServidor().testar(this);
     }
 
