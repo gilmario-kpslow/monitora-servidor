@@ -19,7 +19,6 @@ import javax.mail.internet.MimeMessage;
 public class EnviaEmailUtil {
 
     private final Properties properties;
-    private Session session;
 
     public EnviaEmailUtil() {
         properties = new Properties();
@@ -29,15 +28,16 @@ public class EnviaEmailUtil {
         properties.setProperty("mail.smtp.starttls.required", "true");
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.port", "587");
-        session = Session.getDefaultInstance(properties, new Authenticator() {
+
+    }
+
+    public void enviar(String destinatarios, String assunto, String mensagem) throws MessagingException {
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("notacaucaia@sefin.caucaia.ce.gov.br", "s2014n");
             }
         });
-    }
-
-    public void enviar(String destinatarios, String assunto, String mensagem) throws MessagingException {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("monitor-sefin@sefin.caucaia.ce.gov.br"));
         Address[] toUser = InternetAddress.parse(destinatarios);

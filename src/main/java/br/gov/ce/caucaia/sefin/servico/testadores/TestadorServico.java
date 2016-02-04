@@ -32,9 +32,13 @@ public class TestadorServico implements Serializable {
     private EstatisticaServicoServico ess;
     @EJB
     private ConfiguracaoServico configuracaoServico;
-    private EnviaEmailUtil emailUtil;
+    private final EnviaEmailUtil emailUtil;
 
     private static final Logger LOG = Logger.getLogger(TestadorServico.class.getName());
+
+    public TestadorServico() {
+        emailUtil = new EnviaEmailUtil();
+    }
 
     public void testar(Servico servico) throws Exception {
         servico.setUltimaResposta(Calendar.getInstance());

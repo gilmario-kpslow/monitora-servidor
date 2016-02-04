@@ -35,12 +35,13 @@ public class TestadorServidor implements Serializable {
     private static final Logger LOG = Logger.getLogger(TestadorServidor.class.getName());
     @EJB
     private EstatisticaServidorServico ess;
-    private EnviaEmailUtil emailUtil;
+    private final EnviaEmailUtil emailUtil;
     @EJB
     private ConfiguracaoServico configuracaoServico;
 
     public TestadorServidor() {
         ping = new TestadorDePing();
+        emailUtil = new EnviaEmailUtil();
     }
 
     public void testar(Servidor servidor) throws IOException, MessagingException {

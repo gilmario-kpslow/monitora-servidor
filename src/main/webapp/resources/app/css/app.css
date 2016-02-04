@@ -1,9 +1,4 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
     Created on : 01/12/2015, 09:36:08
     Author     : gilmario
 */
@@ -32,9 +27,11 @@ body {
     right: 0;
     position: absolute;
     transition-duration: 1s;
+    opacity: 0.5;
 }
 
 .mostrador:hover {
+    opacity: 1;
     transition-duration: 1s;
 }
 
