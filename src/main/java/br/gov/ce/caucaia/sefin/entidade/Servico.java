@@ -3,7 +3,6 @@ package br.gov.ce.caucaia.sefin.entidade;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,7 +26,7 @@ public class Servico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(nullable = false)
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Servidor servidor;
     @Column(nullable = false)
     private String nome;

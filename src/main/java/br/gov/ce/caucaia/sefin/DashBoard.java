@@ -32,7 +32,15 @@ public class DashBoard implements Serializable {
     @PostConstruct
     private void init() {
         pagina = "board";
-        listaDeServidores = new ArrayList<>(servico.buscar());
+        listaDeServidores = servico.buscar();
+    }
+
+    public List<Servico> countarServicos(Servidor s) {
+        return servicoServico.buscar(s);
+    }
+
+    public List<Servico> countarServicosAtivos(Servidor s) {
+        return servicoServico.buscarAtivos(s);
     }
 
     public void atualizar() {
@@ -98,6 +106,7 @@ public class DashBoard implements Serializable {
 
     public void removerServidor(Servidor s) {
         try {
+            listaDeServidores.remove(s);
             servico.excluir(s);
             atualizar();
             MensagemUtil.mensagem("Servidor com sucesso");

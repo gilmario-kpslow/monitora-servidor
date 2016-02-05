@@ -57,21 +57,9 @@ public class Servidor implements Serializable {
     private StatusServidor status;
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar ultimoTeste;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "servidor")
-    private final List<Servico> listaDeServico;
 
     public Servidor() {
-        listaDeServico = new ArrayList<>();
-    }
 
-    public List<Servico> getServicosAtivos() {
-        List<Servico> ativos = new ArrayList<>();
-        for (Servico next : listaDeServico) {
-            if (StatusServico.Ativo.equals(next.getStatusServico())) {
-                ativos.add(next);
-            }
-        }
-        return ativos;
     }
 
     public String getFuncionalidade() {
@@ -132,14 +120,6 @@ public class Servidor implements Serializable {
 
     public void testar() throws IOException, MessagingException {
         new TestadorServidor().testar(this);
-    }
-
-    public List<Servico> getListaDeServico() {
-        return Collections.unmodifiableList(listaDeServico);
-    }
-
-    public void addServico(Servico servico) {
-        this.listaDeServico.add(servico);
     }
 
     public Long getId() {

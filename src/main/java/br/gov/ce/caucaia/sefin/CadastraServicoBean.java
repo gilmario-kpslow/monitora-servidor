@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.gov.ce.caucaia.sefin;
 
 import br.gov.ce.caucaia.sefin.entidade.Servico;
@@ -12,6 +7,8 @@ import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -31,6 +28,8 @@ public class CadastraServicoBean implements Serializable {
     private ServicoServico servicoServico;
     @Inject
     private DashBoard board;
+    private static final Logger LOG = Logger.getLogger(CadastraServicoBean.class.getName());
+
     private Servico servico;
 
     @PostConstruct
@@ -50,24 +49,26 @@ public class CadastraServicoBean implements Serializable {
         try {
             servico.setServidor(board.getSelecionado());
             servicoServico.salvar(servico);
-            board.getSelecionado().addServico(servico);
             board.atualizar();
+            board.dashboard();
             init();
             MensagemUtil.mensagem("servico registrado");
-            board.dashboard();
         } catch (Exception e) {
             MensagemUtil.mensagem("Erro", e.getMessage(), FacesMessage.SEVERITY_ERROR);
+            LOG.log(Level.SEVERE, "Erro", e);
         }
     }
 
     public void excluir(Servico servico) {
         try {
-            board.mostraServicos(servico.getServidor());
             servicoServico.excluir(servico);
+            board.mostraServicos(servico.getServidor());
             board.atualizar();
             MensagemUtil.mensagem("servico excluido");
         } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Erro", e);
             MensagemUtil.mensagem("Erro", e.getMessage(), FacesMessage.SEVERITY_ERROR);
+
         }
     }
 

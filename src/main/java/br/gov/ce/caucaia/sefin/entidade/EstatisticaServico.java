@@ -3,7 +3,6 @@ package br.gov.ce.caucaia.sefin.entidade;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +28,7 @@ public class EstatisticaServico implements Serializable {
     private Calendar dataHora;
     private String descricao;
     @JoinColumn(nullable = false)
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Servico servico;
 
     public Long getId() {

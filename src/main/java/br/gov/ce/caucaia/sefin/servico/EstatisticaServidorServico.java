@@ -56,4 +56,8 @@ public class EstatisticaServidorServico implements ServicoInterface<EstatisticaS
         salvar(es);
     }
 
+    public void excluirTodas(Servidor t) {
+        dao.excluirTodas(t);
+    }
+
 }

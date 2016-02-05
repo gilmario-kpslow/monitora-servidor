@@ -67,8 +67,8 @@
                                             <td>
                                                 <h:outputText value="#{servidor.ip}"/>
                                             </td>
-                                            <td class="#{servidor.servicosAtivos.size() != servidor.listaDeServico.size()?'Inativo':''}">
-                                                <h:commandLink value="#{servidor.servicosAtivos.size()} de #{servidor.listaDeServico.size()} ativos">
+                                            <td class="#{dashBoard.countarServicosAtivos(servidor).size() != dashBoard.countarServicos(servidor).size() ?'Inativo':''}">
+                                                <h:commandLink value="#{dashBoard.countarServicosAtivos(servidor).size()} de #{dashBoard.countarServicos(servidor).size()} ativos">
                                                     <f:ajax event="click" render="@form" listener="#{dashBoard.mostraServicos(servidor)}"/>
                                                 </h:commandLink>
                                             </td>
@@ -166,15 +166,15 @@
                                 </div>
                                 <div class="col-md-4">
                                     <h:outputLabel value="Quantidade" for="qtd" styleClass="label label-primary"/>
-                                    <h:message for="memoria" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
+                                    <h:message for="qtd" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
-                                        <h:inputText value="#{cadastraServidorBean.servidor.qtdProcessador}" id="qtd" class="form-control" required="true"/>
+                                        <h:inputText value="#{cadastraServidorBean.servidor.qtdProcessador}" id="qtd" requiredMessage="Informe a quantidade de processadores ou nucleos" class="form-control" required="true"/>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <h:outputLabel value="Descrição" for="descricao" styleClass="label label-primary"/>
-                                    <h:message for="memoria" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
+                                    <h:message for="descricao" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                                     <div>
                                         <h:inputTextarea class="form-control" value="#{cadastraServidorBean.servidor.descricao}" id="descricao" required="true" requiredMessage="Informe uma descrição"/>
                                     </div>
@@ -338,7 +338,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <ui:repeat value="#{dashBoard.selecionado.listaDeServico}" var="servico">
+                                        <ui:repeat value="#{dashBoard.countarServicos(dashBoard.selecionado)}" var="servico">
                                             <tr class="#{servico.statusServico}">
                                                 <td>
                                                     <h:outputText value="#{servico.nome}"/>

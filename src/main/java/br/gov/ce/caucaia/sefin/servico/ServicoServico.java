@@ -19,10 +19,12 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
 
     @EJB
     private ServicoDAO dao;
+    @EJB
+    private EstatisticaServicoServico estatisticaServicoServico;
 
     @Override
     public void excluir(Servico t) {
-        t = carregar(t.getId());
+        estatisticaServicoServico.excluirTodas(t);
         dao.excluir(t);
     }
 
@@ -47,6 +49,18 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
 
     public List<Servico> buscarServicosTestaveis() {
         return dao.buscarServidorAtivo();
+    }
+
+    public void excluirTodos(Servidor t) {
+        List<Servico> servicos = buscar(t);
+        for (Servico s : servicos) {
+            estatisticaServicoServico.excluirTodas(s);
+        }
+        dao.excluirTodos(t);
+    }
+
+    public List<Servico> buscarAtivos(Servidor s) {
+        return dao.buscarServidorAtivo(s);
     }
 
 }

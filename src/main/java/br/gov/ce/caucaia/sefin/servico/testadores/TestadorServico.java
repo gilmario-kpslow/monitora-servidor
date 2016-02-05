@@ -45,6 +45,7 @@ public class TestadorServico implements Serializable {
         if (servico.testar()) {
             if (!StatusServico.Ativo.equals(servico.getStatusServico())) {
                 servico.setStatusServico(StatusServico.Ativo);
+                servicoServico.atualizar(servico);
                 dashBoard.atualizar();
                 ess.notificarAtivacao(servico);
                 connector.enviarMensagem("Servico " + servico.getNome() + " está ativo no servidor " + servico.getServidor().getNome());
@@ -53,12 +54,12 @@ public class TestadorServico implements Serializable {
             }
         } else if (!StatusServico.Inativo.equals(servico.getStatusServico())) {
             servico.setStatusServico(StatusServico.Inativo);
+            servicoServico.atualizar(servico);
             dashBoard.atualizar();
             ess.notificarDesativacao(servico);
             connector.enviarMensagem("Servico " + servico.getNome() + " está inativo no servidor " + servico.getServidor().getNome());
             emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servico " + servico.getNome() + " está inativo no servidor " + servico.getServidor().getNome());
             LOG.log(Level.INFO, "mensagem enviada");
         }
-        servicoServico.atualizar(servico);
     }
 }

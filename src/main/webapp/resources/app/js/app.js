@@ -17,6 +17,10 @@ function iniciaConexao() {
         console.log('open');
         $(".mostrador").show("slow");
     });
+    conexao.onclose = (function () {
+        console.log('close');
+        $(".mostrador").hide("slow");
+    });
 }
 function update() {
     jsf.ajax.request('form', null, {render: '@form'});

@@ -18,9 +18,15 @@ public class ServidorServico implements ServicoInterface<Servidor>, Serializable
 
     @EJB
     private ServidorDAO dao;
+    @EJB
+    private EstatisticaServidorServico estatisticaServidorServico;
+    @EJB
+    private ServicoServico servicoServico;
 
     @Override
     public void excluir(Servidor t) {
+        servicoServico.excluirTodos(t);
+        estatisticaServidorServico.excluirTodas(t);
         dao.excluir(t);
     }
 

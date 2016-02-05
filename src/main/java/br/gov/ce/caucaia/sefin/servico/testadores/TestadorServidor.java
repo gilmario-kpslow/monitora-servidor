@@ -49,6 +49,7 @@ public class TestadorServidor implements Serializable {
         if (ping.testaPing(servidor.getIp())) {
             if (!StatusServidor.Ativo.equals(servidor.getStatus())) {
                 servidor.setStatus(StatusServidor.Ativo);
+                servico.atualizar(servidor);
                 dashBoard.atualizar();
                 ess.notificarAtivacao(servidor);
                 connector.enviarMensagem("Servidor " + servidor.getNome() + " está ativo");
@@ -57,13 +58,13 @@ public class TestadorServidor implements Serializable {
             }
         } else if (!StatusServidor.Inativo.equals(servidor.getStatus())) {
             servidor.setStatus(StatusServidor.Inativo);
+            servico.atualizar(servidor);
             dashBoard.atualizar();
             ess.notificarDesativacao(servidor);
             connector.enviarMensagem("Servidor " + servidor.getNome() + " offline");
             emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servidor " + servidor.getNome() + " está inativo");
             LOG.log(Level.INFO, "mensagem enviada");
         }
-        servico.atualizar(servidor);
     }
 
 }
