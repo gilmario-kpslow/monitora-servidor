@@ -45,16 +45,16 @@ public class TestadorDePingTest {
     @org.junit.Test
     public void testTestaPing() throws Exception {
         System.out.println("testaPing");
-        String ip = "localhost";
+        String ip = "10.100.0.254";
         TestadorDePing instance = new TestadorDePing();
         assertTrue(instance.testaPing(ip));
     }
 
-//    @org.junit.Test
-//    public void testTestaPing2() throws Exception {
-//        System.out.println("testaPing");
-//        String ip = "10.100.1.11";
-//        TestadorDePing instance = new TestadorDePing();
-//        assertFalse(instance.testaPing(ip));
-//    }
+    @org.junit.Test
+    public void testTestaPing2() throws Exception {
+        System.out.println("testaPing");
+        String ip = "10.100.0.2";
+        TestadorDePing instance = new TestadorDePing();
+        assertTrue(instance.testaPing(ip));
+    }
 }

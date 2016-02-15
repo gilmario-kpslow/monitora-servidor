@@ -4,14 +4,18 @@ import br.gov.ce.caucaia.sefin.entidade.Servico;
 import br.gov.ce.caucaia.sefin.entidade.Servidor;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import br.gov.ce.caucaia.sefin.servico.ServidorServico;
+import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServico;
+import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServidor;
 import br.gov.ce.caucaia.sefin.util.MensagemUtil;
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -28,6 +32,11 @@ public class DashBoard implements Serializable {
     private ServicoServico servicoServico;
     private String pagina;
     private Servidor selecionado;
+    @EJB
+    private TestadorServico testadorServico;
+    @EJB
+    private TestadorServidor testadorServidor;
+    private Date data;
 
     @PostConstruct
     private void init() {
@@ -45,6 +54,7 @@ public class DashBoard implements Serializable {
 
     public void atualizar() {
         init();
+        data = new Date();
     }
 
     public List<Servidor> getListaDeServidores() {
@@ -86,18 +96,18 @@ public class DashBoard implements Serializable {
 
     public void testarServidor(Servidor servidor) {
         try {
-            servidor.testar();
-            servico.atualizar(servidor);
+            testadorServidor.testar(servidor);
+            atualizar();
             MensagemUtil.mensagem("Servidor testado com sucesso");
-        } catch (Exception e) {
+        } catch (IOException | MessagingException | InterruptedException e) {
             MensagemUtil.mensagem(e.getMessage());
         }
     }
 
     public void testarServico(Servico s) {
         try {
-            s.testar();
-            servicoServico.atualizar(s);
+            testadorServico.testar(s);
+            atualizar();
             MensagemUtil.mensagem("Serviço testado com sucesso");
         } catch (Exception e) {
             MensagemUtil.mensagem(e.getMessage());
@@ -113,6 +123,14 @@ public class DashBoard implements Serializable {
         } catch (Exception e) {
             MensagemUtil.mensagem(e.getMessage());
         }
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
 }

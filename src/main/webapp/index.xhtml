@@ -11,6 +11,7 @@
             <span class="fa fa-refresh fa-spin text-info" title="Online Aguradando requisições"></span>
         </div>
         <h:form id="form">
+            <input type="hidden" value="#{request.requestURL}" id="servidorID"/>
             <c:outputMensagens/>
             <c:panel id="panel">
                 <div class="row">
@@ -22,6 +23,11 @@
                     <div class="col-md-3">
                         <h:commandLink styleClass="fa fa-amazon btn btn-primary form-control" value=" Novo Servidor">
                             <f:ajax event="click" listener="#{dashBoard.cadastroServidor()}" render="@form"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-md-3">
+                        <h:commandLink styleClass="fa fa-gear btn btn-primary form-control" value=" Configuração" action="configuracao">
+
                         </h:commandLink>
                     </div>
                     <div class="col-md-1">

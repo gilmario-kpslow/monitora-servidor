@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 
 /**
  *
@@ -24,6 +25,8 @@ public class TestaServidorTimer implements Serializable {
     private ServidorServico servico;
     @EJB
     private TestadorServidor testadorServidor;
+    @Inject
+    private DashBoard dashBoard;
     private static final Logger LOG = Logger.getLogger(TestaServidorTimer.class.getName());
 
     @Schedule(hour = "*", minute = "*", second = "0")
@@ -36,6 +39,7 @@ public class TestaServidorTimer implements Serializable {
                 LOG.log(Level.SEVERE, "Erro", e);
             }
         }
+        dashBoard.atualizar();
     }
 
 }

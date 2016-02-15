@@ -35,16 +35,16 @@ public class TestadorServidor implements Serializable {
     private static final Logger LOG = Logger.getLogger(TestadorServidor.class.getName());
     @EJB
     private EstatisticaServidorServico ess;
-    private final EnviaEmailUtil emailUtil;
+    private EnviaEmailUtil emailUtil;
     @EJB
     private ConfiguracaoServico configuracaoServico;
 
     public TestadorServidor() {
         ping = new TestadorDePing();
-        emailUtil = new EnviaEmailUtil();
     }
 
-    public void testar(Servidor servidor) throws IOException, MessagingException {
+    public void testar(Servidor servidor) throws IOException, MessagingException, InterruptedException {
+        emailUtil = new EnviaEmailUtil();
         servidor.setUltimoTeste(Calendar.getInstance());
         if (ping.testaPing(servidor.getIp())) {
             if (!StatusServidor.Ativo.equals(servidor.getStatus())) {

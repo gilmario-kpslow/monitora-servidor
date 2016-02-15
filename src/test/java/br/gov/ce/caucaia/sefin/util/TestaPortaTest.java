@@ -39,16 +39,17 @@ public class TestaPortaTest {
 
     /**
      * Test of testar method, of class TestaPorta.
+     *
+     * @throws java.lang.Exception
      */
-//    @Test
-//    public void testTestar() throws Exception {
-//        System.out.println("testar");
-//        String host = "10.100.0.48";
-//        int porta = 5432;
-//        TestaPorta instance = new TestaPorta();
-//        boolean expResult = true;
-//        boolean result = instance.testar(host, porta);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//    }
+    @Test
+    public void testTestar() throws Exception {
+        System.out.println("testar");
+        String host = "10.100.0.4";
+        int porta = 3306;
+        TestaPorta instance = new TestaPorta();
+        boolean expResult = true;
+        boolean result = instance.testar(host, porta);
+        assertEquals(expResult, result);
+    }
 }

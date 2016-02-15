@@ -118,7 +118,7 @@ public class Servidor implements Serializable {
         this.tipo = tipo;
     }
 
-    public void testar() throws IOException, MessagingException {
+    public void testar() throws IOException, MessagingException, InterruptedException {
         new TestadorServidor().testar(this);
     }
 
