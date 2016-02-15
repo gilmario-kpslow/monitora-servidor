@@ -1,7 +1,6 @@
 var conexao;
 function iniciaConexao() {
     $(".mostrador").hide("slow");
-//    var url = new String(document.location.href);
     var url = document.getElementById("servidorID").value;
     var path = url.replace("http://" + document.location.host, "");
     path = path.replace("/notificador.xhtml", "");
