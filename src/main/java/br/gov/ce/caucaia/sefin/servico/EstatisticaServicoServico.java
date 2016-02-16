@@ -5,6 +5,7 @@ import br.gov.ce.caucaia.sefin.entidade.EstatisticaServico;
 import br.gov.ce.caucaia.sefin.entidade.Servico;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -58,6 +59,10 @@ public class EstatisticaServicoServico implements ServicoInterface<EstatisticaSe
 
     public void excluirTodas(Servico s) {
         dao.excluirTodas(s);
+    }
+
+    public List<EstatisticaServico> buscar(Servico s) {
+        return dao.buscar(s);
     }
 
 }

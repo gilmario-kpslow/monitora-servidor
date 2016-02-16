@@ -1,17 +1,15 @@
 var conexao;
 function iniciaConexao() {
     $(".mostrador").hide("slow");
-    var url = document.getElementById("servidorID").value;
-    var path = url.replace("http://" + document.location.host, "");
-    path = path.replace("/notificador.xhtml", "");
-
-    conexao = new WebSocket("ws://" + document.location.host + path + "connector");
+    var url = $("#servidorID").val();
+    conexao = new WebSocket("ws://" + url + "/connector");
     conexao.onmessage = (function (evt) {
         console.log(evt.data);
         setTimeout(update, 5000);
     });
     conexao.onerror = (function (evt) {
         console.log('erro');
+        console.log(evt.data);
     });
     conexao.onopen = (function () {
         console.log('open');

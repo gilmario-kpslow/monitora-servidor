@@ -7,15 +7,13 @@
 
     <cc:interface>
         <cc:attribute name="titulo" default=""/>
+        <cc:attribute name="tamanho" default="" shortDescription="modal-lg, modal-sm"/>
         <cc:attribute name="id_dialog" default=""/>
         <cc:attribute name="icon" default=""/>
-        <cc:attribute name="onshow" default=""/>
-        <cc:attribute name="acao" default="" method-signature="java.lang.Void action()"/>
-        <cc:attribute name="render" default="@form"/>
     </cc:interface>
     <cc:implementation>
         <div class="modal fade" id="#{cc.attrs.id_dialog}" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog #{cc.attrs.tamanho}" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-primary">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="fa fa-times"></span></button>
@@ -28,7 +26,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <h:commandLink class="btn btn-primary fa fa-check form-control" value="OK" onclick="$('##{cc.attrs.id_dialog}').modal('hide');">
-                                    <f:ajax event="click" listener="#{cc.attrs.acao}" execute="@form" render="#{cc.attrs.render}"/>
+
                                 </h:commandLink>
                             </div>
                             <div class="col-lg-6">
