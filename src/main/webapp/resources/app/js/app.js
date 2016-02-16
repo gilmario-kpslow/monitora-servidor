@@ -25,3 +25,9 @@ function update() {
     console.log("update");
 }
 iniciaConexao();
+manterSessao();
+function manterSessao() {
+    update();
+    setTimeout(manterSessao, 300000);
+    console.log('mantendo sessao');
+}
