@@ -1,4 +1,5 @@
 var conexao;
+var alerta;
 function iniciaConexao() {
     $(".mostrador").hide("slow");
     var url = $("#servidorID").val();
@@ -21,13 +22,28 @@ function iniciaConexao() {
     });
 }
 function update() {
+    tocarAlerta();
     jsf.ajax.request('form', 'null', {render: 'form'});
     console.log("update");
 }
+carregarSom();
 iniciaConexao();
 manterSessao();
 function manterSessao() {
-    update();
+    jsf.ajax.request('form', 'null');
     setTimeout(manterSessao, 300000);
     console.log('mantendo sessao');
+}
+
+function carregarSom() {
+    alerta = new Audio();
+    alerta.src = "resources/snd/alerta.ogg";
+    alerta.volume = 0.9;
+    alerta.load();
+}
+
+function tocarAlerta() {
+    alerta.pause();
+    alerta.currentTime = 0.0;
+    alerta.play();
 }
