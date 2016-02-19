@@ -39,6 +39,7 @@ public class EnviaEmailUtil {
         });
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("monitor-sefin@sefin.caucaia.ce.gov.br"));
+//        message.setFrom(new InternetAddress("monitor-sefin@sefin.caucaia.ce.gov.br"));
         Address[] toUser = InternetAddress.parse(destinatarios);
         message.setSubject(assunto);
         message.setText(mensagem);

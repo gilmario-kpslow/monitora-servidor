@@ -111,70 +111,6 @@
                 </c:panel>
             </c:outputRender>
 
-            <c:outputRender rendered="#{dashBoard.pagina == 'novo_servico'}">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <c:panel titulo="Cadastrar novo Servico">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Servidor" for="servidor" styleClass="label label-primary"/>
-                                    <div>
-                                        <h:inputText value="#{dashBoard.selecionado.nome}" id="servidor" readonly="true" styleClass="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <h:outputLabel value="IP" for="ip" styleClass="label label-primary"/>
-                                    <div>
-                                        <h:inputText value="#{dashBoard.selecionado.ip}" id="ip" readonly="true" styleClass="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Nome" for="nome" styleClass="label label-primary"/>
-                                    <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                                    <div>
-                                        <h:inputText value="#{cadastraServicoBean.servico.nome}" id="nome" requiredMessage="Informe o nome do serviço" required="true" styleClass="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Porta" for="porta" styleClass="label label-primary"/>
-                                    <h:message for="porta" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                                    <div>
-                                        <h:inputText value="#{cadastraServicoBean.servico.porta}" id="porta" required="true" styleClass="form-control" requiredMessage="Informe a porta do serviço"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Contexto" for="contexto" styleClass="label label-primary"/>
-                                    <div>
-                                        <h:inputText value="#{cadastraServicoBean.servico.contexto}" id="contexto" styleClass="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Tipo se Servico" for="tipo_servico" styleClass="label label-primary"/>
-                                    <div>
-                                        <h:selectOneMenu value="#{cadastraServicoBean.servico.tipoServico}" id="tipo_servico" styleClass="form-control">
-                                            <f:selectItems var="tipo" value="#{cadastraServicoBean.tiposServico}" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-                                        </h:selectOneMenu>
-                                    </div>
-                                </div>
-                                <f:facet name="footer">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h:commandLink value=" Salvar" styleClass="fa fa-save btn btn-primary form-control">
-                                                <f:ajax event="click" render="@form" execute="@form" listener="#{cadastraServicoBean.salvar()}"/>
-                                            </h:commandLink>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <h:commandLink value=" Cancelar" styleClass="fa fa-ban btn btn-danger form-control">
-                                                <f:ajax event="click" render="@form" listener="#{dashBoard.dashboard()}" immediate="true"/>
-                                            </h:commandLink>
-                                        </div>
-                                    </div>
-                                </f:facet>
-                            </div>
-                        </c:panel>
-                    </div>
-                </div>
-            </c:outputRender>
             <c:outputRender rendered="#{dashBoard.pagina == 'servicos'}">
                 <c:panel titulo="Servicos">
                     <c:campo titulo="Dados do Servidor">
@@ -225,9 +161,7 @@
                     <c:campo titulo="Serviços Registrados">
                         <div class="row">
                             <div class="col-md-3 col-sm-4">
-                                <h:commandLink value=" Novo Serviço" styleClass="fa fa-plus btn btn-primary form-control">
-                                    <f:ajax event="click" render="@form" listener="#{dashBoard.cadastroServico()}" immediate="true"/>
-                                </h:commandLink>
+                                <h:commandLink value=" Novo Serviço" styleClass="fa fa-plus btn btn-primary form-control" action="servico"/>
                             </div>
                         </div>
                         <div class="row">

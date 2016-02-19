@@ -69,14 +69,6 @@ public class DashBoard implements Serializable {
         return pagina;
     }
 
-    public void cadastroServico() {
-        pagina = "novo_servico";
-    }
-
-    public void cadastroServidor() {
-        pagina = "novo_servidor";
-    }
-
     public void dashboard() {
         pagina = "board";
     }

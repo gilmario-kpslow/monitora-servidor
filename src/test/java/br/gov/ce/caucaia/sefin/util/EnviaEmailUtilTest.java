@@ -46,9 +46,9 @@ public class EnviaEmailUtilTest {
     public void testEnviar() {
 //        System.out.println("enviar");
         try {
-//            EnviaEmailUtil instance = new EnviaEmailUtil();
+            EnviaEmailUtil instance = new EnviaEmailUtil();
 //            instance.enviar("gilmario@sefin.caucaia.ce.gov.br", "Atenção", "Foram detctados problemas nos servidores");
-//            instance.enviar("gilmario@sefin.caucaia.ce.gov.br", "Atenção", "Foram detctados ");
+            instance.enviar("gilmariosoftware@gmail.com", "Atenção", "Foram detctados ");
             assertTrue(true);
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "Erro", e);

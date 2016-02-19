@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes">
+
+    <ui:define name="conteudo">
+        <h:form id="form">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <c:outputMensagens/>
+                    <c:panel titulo="Cadastrar novo Servico">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h:outputLabel value="Servidor" for="servidor" styleClass="label label-primary"/>
+                                <div>
+                                    <h:inputText value="#{dashBoard.selecionado.nome}" id="servidor" readonly="true" styleClass="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="IP" for="ip" styleClass="label label-primary"/>
+                                <div>
+                                    <h:inputText value="#{dashBoard.selecionado.ip}" id="ip" readonly="true" styleClass="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="Nome" for="nome" styleClass="label label-primary"/>
+                                <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
+                                <div>
+                                    <h:inputText value="#{cadastraServicoBean.servico.nome}" id="nome" requiredMessage="Informe o nome do serviço" required="true" styleClass="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="Porta" for="porta" styleClass="label label-primary"/>
+                                <h:message for="porta" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
+                                <div>
+                                    <h:inputText value="#{cadastraServicoBean.servico.porta}" id="porta" required="true" styleClass="form-control" requiredMessage="Informe a porta do serviço"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="Contexto" for="contexto" styleClass="label label-primary"/>
+                                <div>
+                                    <h:inputText value="#{cadastraServicoBean.servico.contexto}" id="contexto" styleClass="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h:outputLabel value="Tipo se Servico" for="tipo_servico" styleClass="label label-primary"/>
+                                <div>
+                                    <h:selectOneMenu value="#{cadastraServicoBean.servico.tipoServico}" id="tipo_servico" styleClass="form-control">
+                                        <f:selectItems var="tipo" value="#{cadastraServicoBean.tiposServico}" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <f:facet name="footer">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h:commandLink value=" Salvar" styleClass="fa fa-save btn btn-primary form-control">
+                                            <f:ajax event="click" render="@form" execute="@form" listener="#{cadastraServicoBean.salvar()}"/>
+                                        </h:commandLink>
+                                    </div>
+                                </div>
+                            </f:facet>
+                        </div>
+                    </c:panel>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
