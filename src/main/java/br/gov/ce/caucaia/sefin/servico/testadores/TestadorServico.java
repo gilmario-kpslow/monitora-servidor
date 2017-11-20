@@ -1,10 +1,10 @@
 package br.gov.ce.caucaia.sefin.servico.testadores;
 
 import br.gov.ce.caucaia.sefin.DashBoard;
-import br.gov.ce.caucaia.sefin.entidade.Servico;
-import br.gov.ce.caucaia.sefin.entidade.StatusServico;
-import br.gov.ce.caucaia.sefin.servico.ConfiguracaoServico;
-import br.gov.ce.caucaia.sefin.servico.EstatisticaServicoServico;
+import br.gov.ce.caucaia.sefin.servico.Servico;
+import br.gov.ce.caucaia.sefin.servico.StatusServico;
+import br.gov.ce.caucaia.sefin.configuracao.ConfiguracaoServico;
+import br.gov.ce.caucaia.sefin.configuracao.EstatisticaServicoServico;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import br.gov.ce.caucaia.sefin.util.EnviaEmailUtil;
 import java.io.Serializable;

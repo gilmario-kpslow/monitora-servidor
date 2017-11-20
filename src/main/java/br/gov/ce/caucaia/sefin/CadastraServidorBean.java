@@ -1,8 +1,8 @@
 package br.gov.ce.caucaia.sefin;
 
-import br.gov.ce.caucaia.sefin.entidade.Servidor;
-import br.gov.ce.caucaia.sefin.entidade.TipoServidor;
-import br.gov.ce.caucaia.sefin.servico.ServidorServico;
+import br.gov.ce.caucaia.sefin.servidor.Servidor;
+import br.gov.ce.caucaia.sefin.servidor.ServidorServico;
+import br.gov.ce.caucaia.sefin.servidor.TipoServidor;
 import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.Serializable;
 import java.util.Arrays;

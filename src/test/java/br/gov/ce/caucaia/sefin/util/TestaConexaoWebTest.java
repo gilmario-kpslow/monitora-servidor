@@ -37,7 +37,7 @@ public class TestaConexaoWebTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testTestar() throws Exception {
         System.out.println("testar");
         String path = "http://localhost";

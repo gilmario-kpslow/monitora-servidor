@@ -13,7 +13,7 @@ import org.hibernate.Session;
  */
 public abstract class DAO<T, PK extends Serializable> implements Serializable {
 
-    @PersistenceContext(unitName = "testadorPU")
+    @PersistenceContext
     private EntityManager manager;
 
     public Session getSession() {
@@ -21,7 +21,7 @@ public abstract class DAO<T, PK extends Serializable> implements Serializable {
     }
 
     public void salvar(T t) {
-        getSession().saveOrUpdate(t);
+        getSession().save(t);
     }
 
     public void atualizar(T t) {

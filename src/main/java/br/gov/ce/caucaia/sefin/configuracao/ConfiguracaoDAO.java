@@ -1,6 +1,7 @@
-package br.gov.ce.caucaia.sefin.dao;
+package br.gov.ce.caucaia.sefin.configuracao;
 
-import br.gov.ce.caucaia.sefin.entidade.Configuracao;
+import br.gov.ce.caucaia.sefin.configuracao.Configuracao;
+import br.gov.ce.caucaia.sefin.dao.DAO;
 import java.io.Serializable;
 import javax.ejb.Stateless;
 

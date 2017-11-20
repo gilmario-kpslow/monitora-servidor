@@ -1,8 +1,10 @@
 package br.gov.ce.caucaia.sefin.servico.testadores;
 
+import br.gov.ce.caucaia.sefin.servidor.TestadorServidor;
 import br.gov.ce.caucaia.sefin.DashBoard;
-import br.gov.ce.caucaia.sefin.entidade.Servidor;
-import br.gov.ce.caucaia.sefin.servico.ServidorServico;
+import br.gov.ce.caucaia.sefin.servidor.Servidor;
+import br.gov.ce.caucaia.sefin.servidor.ServidorServico;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,6 +14,7 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -32,13 +35,13 @@ public class TestaServidorTimer implements Serializable {
     @Schedule(hour = "*", minute = "*", second = "0")
     public void testarServidores() {
         List<Servidor> listaDeServidores = servico.buscar();
-        for (Servidor s : listaDeServidores) {
+        listaDeServidores.forEach((s) -> {
             try {
                 testadorServidor.testar(s);
-            } catch (Exception e) {
+            } catch (IOException | InterruptedException | MessagingException e) {
                 LOG.log(Level.SEVERE, "Erro", e);
             }
-        }
+        });
         dashBoard.atualizar();
     }
 

@@ -1,7 +1,7 @@
 package br.gov.ce.caucaia.sefin;
 
-import br.gov.ce.caucaia.sefin.entidade.Configuracao;
-import br.gov.ce.caucaia.sefin.servico.ConfiguracaoServico;
+import br.gov.ce.caucaia.sefin.configuracao.Configuracao;
+import br.gov.ce.caucaia.sefin.configuracao.ConfiguracaoServico;
 import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;

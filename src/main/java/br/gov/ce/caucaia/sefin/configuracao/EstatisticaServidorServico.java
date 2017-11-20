@@ -1,8 +1,9 @@
-package br.gov.ce.caucaia.sefin.servico;
+package br.gov.ce.caucaia.sefin.configuracao;
 
-import br.gov.ce.caucaia.sefin.dao.EstatisticaServidorDAO;
-import br.gov.ce.caucaia.sefin.entidade.EstatisticaServidor;
-import br.gov.ce.caucaia.sefin.entidade.Servidor;
+import br.gov.ce.caucaia.sefin.estatistica.EstatisticaServidorDAO;
+import br.gov.ce.caucaia.sefin.estatistica.EstatisticaServidor;
+import br.gov.ce.caucaia.sefin.servico.ServicoInterface;
+import br.gov.ce.caucaia.sefin.servidor.Servidor;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;

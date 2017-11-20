@@ -42,7 +42,7 @@ public class TestaPortaTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testTestar() throws Exception {
         System.out.println("testar");
         String host = "10.100.0.4";

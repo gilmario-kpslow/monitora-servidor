@@ -1,7 +1,7 @@
 package br.gov.ce.caucaia.sefin;
 
-import br.gov.ce.caucaia.sefin.entidade.Servico;
-import br.gov.ce.caucaia.sefin.entidade.TipoServico;
+import br.gov.ce.caucaia.sefin.servico.Servico;
+import br.gov.ce.caucaia.sefin.servico.TipoServico;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.Serializable;
@@ -47,7 +47,7 @@ public class CadastraServicoBean implements Serializable {
 
     public void salvar() {
         try {
-            servico.setServidor(board.getSelecionado());
+//            servico.setServidor(board.getSelecionado());
             servicoServico.salvar(servico);
             board.atualizar();
             board.dashboard();

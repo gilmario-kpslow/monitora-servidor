@@ -1,7 +1,8 @@
-package br.gov.ce.caucaia.sefin.servico;
+package br.gov.ce.caucaia.sefin.configuracao;
 
-import br.gov.ce.caucaia.sefin.dao.ConfiguracaoDAO;
-import br.gov.ce.caucaia.sefin.entidade.Configuracao;
+import br.gov.ce.caucaia.sefin.configuracao.ConfiguracaoDAO;
+import br.gov.ce.caucaia.sefin.configuracao.Configuracao;
+import br.gov.ce.caucaia.sefin.servico.ServicoInterface;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

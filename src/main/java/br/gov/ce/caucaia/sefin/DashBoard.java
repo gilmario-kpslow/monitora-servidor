@@ -1,11 +1,11 @@
 package br.gov.ce.caucaia.sefin;
 
-import br.gov.ce.caucaia.sefin.entidade.Servico;
-import br.gov.ce.caucaia.sefin.entidade.Servidor;
+import br.gov.ce.caucaia.sefin.servico.Servico;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
-import br.gov.ce.caucaia.sefin.servico.ServidorServico;
 import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServico;
-import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServidor;
+import br.gov.ce.caucaia.sefin.servidor.Servidor;
+import br.gov.ce.caucaia.sefin.servidor.ServidorServico;
+import br.gov.ce.caucaia.sefin.servidor.TestadorServidor;
 import br.gov.ce.caucaia.sefin.util.MensagemUtil;
 import java.io.IOException;
 import java.io.Serializable;

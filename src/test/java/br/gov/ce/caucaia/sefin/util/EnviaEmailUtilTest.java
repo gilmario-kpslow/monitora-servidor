@@ -42,7 +42,7 @@ public class EnviaEmailUtilTest {
     /**
      * Test of enviar method, of class EnviaEmailUtil.
      */
-    @Test
+//    @Test
     public void testEnviar() {
 //        System.out.println("enviar");
         try {

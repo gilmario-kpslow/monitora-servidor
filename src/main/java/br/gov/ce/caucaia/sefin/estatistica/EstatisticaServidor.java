@@ -1,5 +1,6 @@
-package br.gov.ce.caucaia.sefin.entidade;
+package br.gov.ce.caucaia.sefin.estatistica;
 
+import br.gov.ce.caucaia.sefin.servidor.Servidor;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;

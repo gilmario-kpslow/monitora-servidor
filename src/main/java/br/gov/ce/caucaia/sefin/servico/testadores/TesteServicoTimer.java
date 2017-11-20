@@ -1,7 +1,7 @@
 package br.gov.ce.caucaia.sefin.servico.testadores;
 
 import br.gov.ce.caucaia.sefin.DashBoard;
-import br.gov.ce.caucaia.sefin.entidade.Servico;
+import br.gov.ce.caucaia.sefin.servico.Servico;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import java.io.Serializable;
 import java.util.List;

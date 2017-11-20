@@ -42,7 +42,7 @@ public class TestadorDePingTest {
      *
      * @throws java.lang.Exception
      */
-    @org.junit.Test
+//    @org.junit.Test
     public void testTestaPing() throws Exception {
         System.out.println("testaPing");
         String ip = "10.100.0.254";
@@ -50,7 +50,7 @@ public class TestadorDePingTest {
         assertTrue(instance.testaPing(ip));
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testTestaPing2() throws Exception {
         System.out.println("testaPing");
         String ip = "10.100.0.2";

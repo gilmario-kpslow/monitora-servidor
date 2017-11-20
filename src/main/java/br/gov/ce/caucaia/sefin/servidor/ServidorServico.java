@@ -1,7 +1,8 @@
-package br.gov.ce.caucaia.sefin.servico;
+package br.gov.ce.caucaia.sefin.servidor;
 
-import br.gov.ce.caucaia.sefin.entidade.Servidor;
-import br.gov.ce.caucaia.sefin.dao.ServidorDAO;
+import br.gov.ce.caucaia.sefin.configuracao.EstatisticaServidorServico;
+import br.gov.ce.caucaia.sefin.servico.ServicoInterface;
+import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -28,6 +29,11 @@ public class ServidorServico implements ServicoInterface<Servidor>, Serializable
         servicoServico.excluirTodos(t);
         estatisticaServidorServico.excluirTodas(t);
         dao.excluir(t);
+    }
+
+    public void excluir(Long id) {
+        Servidor servidor = carregar(id);
+        excluir(servidor);
     }
 
     @Override

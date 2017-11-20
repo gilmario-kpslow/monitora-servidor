@@ -1,6 +1,6 @@
 package br.gov.ce.caucaia.sefin.servico.testadores;
 
-import br.gov.ce.caucaia.sefin.entidade.Servico;
+import br.gov.ce.caucaia.sefin.servico.Servico;
 import br.gov.ce.caucaia.sefin.util.TestaConexaoWeb;
 import java.io.IOException;
 

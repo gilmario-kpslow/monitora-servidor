@@ -1,8 +1,7 @@
-package br.gov.ce.caucaia.sefin.dao;
+package br.gov.ce.caucaia.sefin.estatistica;
 
-import br.gov.ce.caucaia.sefin.entidade.EstatisticaServico;
-import br.gov.ce.caucaia.sefin.entidade.EstatisticaServico_;
-import br.gov.ce.caucaia.sefin.entidade.Servico;
+import br.gov.ce.caucaia.sefin.dao.DAO;
+import br.gov.ce.caucaia.sefin.servico.Servico;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
