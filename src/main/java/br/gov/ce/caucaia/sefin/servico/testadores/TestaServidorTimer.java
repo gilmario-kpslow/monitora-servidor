@@ -32,7 +32,7 @@ public class TestaServidorTimer implements Serializable {
     private DashBoard dashBoard;
     private static final Logger LOG = Logger.getLogger(TestaServidorTimer.class.getName());
 
-    @Schedule(hour = "*", minute = "*", second = "0")
+    //@Schedule(hour = "*", minute = "*", second = "0")
     public void testarServidores() {
         List<Servidor> listaDeServidores = servico.buscar();
         listaDeServidores.forEach((s) -> {

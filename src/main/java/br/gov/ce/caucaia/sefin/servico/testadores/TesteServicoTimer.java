@@ -29,7 +29,7 @@ public class TesteServicoTimer implements Serializable {
     private DashBoard dashBoard;
     private static final Logger LOG = Logger.getLogger(TesteServicoTimer.class.getName());
 
-    @Schedule(hour = "*", minute = "*", second = "30")
+    //@Schedule(hour = "*", minute = "*", second = "30")
     public void testaServicos() {
         List<Servico> servicos = servico.buscarServicosTestaveis();
         for (Servico s : servicos) {

@@ -36,7 +36,7 @@ public class Servidor implements Serializable {
     @Column(nullable = false)
     private String sistemaOperacional;
     @Column(nullable = false)
-    private String HD;
+    private String hd;
     @Column(nullable = false)
     private String memoria;
     @Column(nullable = false)
@@ -52,7 +52,7 @@ public class Servidor implements Serializable {
     private Calendar ultimoTeste;
 
     public Servidor() {
-
+        status = StatusServidor.Inativo;
     }
 
     public String getFuncionalidade() {
@@ -71,12 +71,12 @@ public class Servidor implements Serializable {
         this.sistemaOperacional = sistemaOperacional;
     }
 
-    public String getHD() {
-        return HD;
+    public String getHd() {
+        return hd;
     }
 
-    public void setHD(String HD) {
-        this.HD = HD;
+    public void setHd(String hd) {
+        this.hd = hd;
     }
 
     public String getMemoria() {

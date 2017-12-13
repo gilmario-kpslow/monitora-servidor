@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.gov.ce.caucaia.sefin.servidor;
+package br.gov.ce.caucaia.sefin.servico;
 
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -23,48 +18,40 @@ import javax.ws.rs.core.Response;
  *
  * @author gilmario
  */
-@Path("/servidor")
+@Path("/servico")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Provider
-public class ServidorResource implements Serializable {
+public class ServicoResource implements Serializable {
 
     @EJB
-    private ServidorServico servico;
+    private ServicoServico servico;
 
     @GET
-    public Response getServidores() {
+    @Path(value = "{servidor}")
+    public Response getServicos(@PathParam(value = "servidor") Long id) {
         try {
-            return Response.ok(servico.buscar()).build();
-        } catch (Exception e) {
-            return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-    @GET
-    @Path(value = "/{limit}/{offset}")
-    public Response getServidoresFiltro(@PathParam(value = "limit") Integer limit,@PathParam(value = "offset") Integer offset ) {
-        try {
-            return Response.ok(servico.buscar(limit, offset)).build();
+            return Response.ok(servico.buscar(id)).build();
         } catch (Exception e) {
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @POST
-    public Response add(Servidor servidor) {
+    public Response add(Servico servico) {
         try {
-            servico.salvar(servidor);
-            return Response.ok(servidor).build();
+            this.servico.salvar(servico);
+            return Response.ok(servico).build();
         } catch (Exception e) {
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PUT
-    public Response update(Servidor servidor) {
+    public Response update(Servico servico) {
         try {
-            servico.atualizar(servidor);
-            return Response.ok(servidor).build();
+            this.servico.atualizar(servico);
+            return Response.ok(servico).build();
         } catch (Exception e) {
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
@@ -74,7 +61,7 @@ public class ServidorResource implements Serializable {
     @Path(value = "{id}")
     public Response remove(@PathParam(value = "id") Long id) {
         try {
-            servico.excluir(id);
+            this.servico.excluir(id);
             return Response.ok().build();
         } catch (Exception e) {
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();

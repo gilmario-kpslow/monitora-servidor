@@ -62,4 +62,15 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
         return dao.buscarServidorAtivo(s);
     }
 
+    public List<Servico> buscar(Long idServidor) {
+        Servidor servidor = new Servidor();
+        servidor.setId(idServidor);
+        return dao.buscar(servidor);
+    }
+
+    public void excluir(Long id) {
+        Servico servico = dao.carregar(Servico.class, id);
+        dao.excluir(servico);
+    }
+
 }

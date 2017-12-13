@@ -16,6 +16,12 @@ public abstract class DAO<T, PK extends Serializable> implements Serializable {
     @PersistenceContext
     private EntityManager manager;
 
+    public EntityManager getEm() {
+        return manager;
+    }
+    
+    
+
     public Session getSession() {
         return (Session) manager.getDelegate();
     }

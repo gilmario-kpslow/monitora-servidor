@@ -55,4 +55,8 @@ public class ServidorServico implements ServicoInterface<Servidor>, Serializable
         return dao.carregar(Servidor.class, pk);
     }
 
+    public Object buscar(Integer limit, Integer offset) {
+        return dao.buscar(limit, offset);
+    }
+
 }

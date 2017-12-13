@@ -4,8 +4,9 @@ import br.gov.ce.caucaia.sefin.dao.DAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Order;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -15,7 +16,20 @@ import org.hibernate.criterion.Order;
 public class ServidorDAO extends DAO<Servidor, Long> implements Serializable {
 
     public List<Servidor> buscar() {
-        return getSession().createCriteria(Servidor.class).addOrder(Order.asc(Servidor_.ip.getName())).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+        CriteriaBuilder cb = getEm().getCriteriaBuilder();
+        CriteriaQuery<Servidor> q = cb.createQuery(Servidor.class);
+        Root<Servidor> root = q.from(Servidor.class);
+        q.orderBy(cb.asc(root.get(Servidor_.nome)));
+        return getEm().createQuery(q).getResultList();
+    }
+
+    public List<Servidor> buscar(Integer limit, Integer offset) {
+        CriteriaBuilder cb = getEm().getCriteriaBuilder();
+        CriteriaQuery<Servidor> q = cb.createQuery(Servidor.class);
+        Root<Servidor> root = q.from(Servidor.class);
+        q.orderBy(cb.asc(root.get(Servidor_.nome)));
+        
+        return getEm().createQuery(q).setMaxResults(limit).setFirstResult(offset).getResultList();
     }
 
 }
