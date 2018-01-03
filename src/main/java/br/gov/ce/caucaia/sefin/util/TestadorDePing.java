@@ -14,4 +14,5 @@ public class TestadorDePing {
         return proc.waitFor() == 0;
 
     }
+
 }

@@ -1,8 +1,9 @@
 package br.gov.ce.caucaia.sefin.servidor;
 
+import br.gov.ce.caucaia.sefin.so.SistemaOperacional;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.mail.MessagingException;
 import javax.persistence.Column;
@@ -12,8 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,6 +22,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class Servidor implements Serializable {
+
+    private static final String REGEX = "\\b(([01]?\\d?\\d|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d?\\d|2[0-4]\\d|25[0-5])\\b";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +36,9 @@ public class Servidor implements Serializable {
     private String descricao;
     @Column(nullable = false)
     private String funcionalidade;
-    @Column(nullable = false)
-    private String sistemaOperacional;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private SistemaOperacional sistemaOperacional;
     @Column(nullable = false)
     private String hd;
     @Column(nullable = false)
@@ -48,8 +52,7 @@ public class Servidor implements Serializable {
     private TipoServidor tipo;
     @Enumerated(EnumType.STRING)
     private StatusServidor status;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar ultimoTeste;
+    private LocalDate ultimoTeste;
 
     public Servidor() {
         status = StatusServidor.Inativo;
@@ -63,11 +66,11 @@ public class Servidor implements Serializable {
         this.funcionalidade = funcionalidade;
     }
 
-    public String getSistemaOperacional() {
+    public SistemaOperacional getSistemaOperacional() {
         return sistemaOperacional;
     }
 
-    public void setSistemaOperacional(String sistemaOperacional) {
+    public void setSistemaOperacional(SistemaOperacional sistemaOperacional) {
         this.sistemaOperacional = sistemaOperacional;
     }
 
@@ -123,11 +126,11 @@ public class Servidor implements Serializable {
         this.id = id;
     }
 
-    public Calendar getUltimoTeste() {
+    public LocalDate getUltimoTeste() {
         return ultimoTeste;
     }
 
-    public void setUltimoTeste(Calendar ultimoTeste) {
+    public void setUltimoTeste(LocalDate ultimoTeste) {
         this.ultimoTeste = ultimoTeste;
     }
 
@@ -159,9 +162,13 @@ public class Servidor implements Serializable {
         return ip;
     }
 
-    public void setIp(String ip) {
+    public void setIp(String ip) throws Exception {
+        if (Objects.nonNull(ip) && !ip.matches(REGEX)) {
+            throw new Exception("Endereço de IP Inválido");
+        }
         this.ip = ip;
     }
+
 
     @Override
     public int hashCode() {

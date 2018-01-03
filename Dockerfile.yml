@@ -1,0 +1,8 @@
+FROM maven:3.5-jdk-8
+LABEL maintainer="gilmariosoftware@gmail.com"
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+VOLUME /home/gilmario/.m2 /root/.m2
+EXPOSE 8080
+RUN mvn clean install
+RUN mvn wildfly-swarm:run

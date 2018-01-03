@@ -2,12 +2,13 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="testadorPU" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <jta-data-source>java:/monitor</jta-data-source>
+    <jta-data-source>java:jboss/datasources/testeDS</jta-data-source>
     <class>br.gov.ce.caucaia.sefin.configuracao.Configuracao</class>
     <class>br.gov.ce.caucaia.sefin.estatistica.EstatisticaServico</class>
     <class>br.gov.ce.caucaia.sefin.estatistica.EstatisticaServidor</class>
     <class>br.gov.ce.caucaia.sefin.servico.Servico</class>
     <class>br.gov.ce.caucaia.sefin.servidor.Servidor</class>
+    <class>br.gov.ce.caucaia.sefin.so.SistemaOperacional</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

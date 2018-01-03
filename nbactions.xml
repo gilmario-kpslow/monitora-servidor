@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>CUSTOM-runswarm</actionName>
+        <displayName>runswarm</displayName>
+        <goals>
+            <goal>wildfly-swarm:run</goal>
+        </goals>
+    </action>
+    <action>
+            <actionName>CUSTOM-rundocker</actionName>
+            <displayName>rundocker</displayName>
+            <goals>
+                <goal>docker:start</goal>
+                <goal>-Pdocker</goal>
+            </goals>
+        </action> 
+</actions>

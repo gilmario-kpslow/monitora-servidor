@@ -1,6 +1,5 @@
 package br.gov.ce.caucaia.sefin.servico;
 
-import br.gov.ce.caucaia.sefin.servico.Servico;
 import br.gov.ce.caucaia.sefin.servico.testadores.TestaServicoWeb;
 import br.gov.ce.caucaia.sefin.servico.testadores.TestaSocket;
 import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServicoInterface;

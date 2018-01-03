@@ -8,7 +8,7 @@ import br.gov.ce.caucaia.sefin.servico.testadores.Connector;
 import br.gov.ce.caucaia.sefin.util.EnviaEmailUtil;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -43,7 +43,7 @@ public class TestadorServidor implements Serializable {
 
     public void testar(Servidor servidor) throws IOException, MessagingException, InterruptedException {
         emailUtil = new EnviaEmailUtil();
-        servidor.setUltimoTeste(Calendar.getInstance());
+        servidor.setUltimoTeste(LocalDate.now());
         if (ping.testaPing(servidor.getIp())) {
             if (!StatusServidor.Ativo.equals(servidor.getStatus())) {
                 servidor.setStatus(StatusServidor.Ativo);

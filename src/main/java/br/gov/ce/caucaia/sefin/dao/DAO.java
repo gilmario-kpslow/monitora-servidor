@@ -3,7 +3,6 @@ package br.gov.ce.caucaia.sefin.dao;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.hibernate.Session;
 
 /**
  *
@@ -20,26 +19,21 @@ public abstract class DAO<T, PK extends Serializable> implements Serializable {
         return manager;
     }
     
-    
-
-    public Session getSession() {
-        return (Session) manager.getDelegate();
+    public T salvar(T t) {
+        getEm().persist(t);
+        return t;
     }
 
-    public void salvar(T t) {
-        getSession().save(t);
-    }
-
-    public void atualizar(T t) {
-        getSession().merge(t);
+    public T atualizar(T t) {
+        return getEm().merge(t);
     }
 
     public void excluir(T t) {
-        getSession().refresh(t);
-        getSession().delete(t);
+        getEm().refresh(t);
+        getEm().remove(t);
     }
 
     public T carregar(Class<T> entidade, Serializable pk) {
-        return (T) getSession().get(entidade, pk);
+        return getEm().find(entidade, pk);
     }
 }

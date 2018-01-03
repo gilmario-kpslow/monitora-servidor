@@ -6,6 +6,8 @@
 package br.gov.ce.caucaia.sefin;
 
 import br.gov.ce.caucaia.sefin.util.TestadorDePing;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,5 +58,18 @@ public class TestadorDePingTest {
         String ip = "10.100.0.2";
         TestadorDePing instance = new TestadorDePing();
         assertTrue(instance.testaPing(ip));
+    }
+
+    @org.junit.Test
+    public void testTestaIP() throws Exception {
+        String ip = "2.255.255.8";
+        //Pattern p = Pattern.compile("\\d[0-2]|\\d{3}.\\d{3}.\\d{3}.\\d{3}");;
+        //Pattern p = Pattern.compile("\\d[0-2]\\d[0-5]\\\\d[0-5]|\\d{1,3}");
+        //Pattern p = Pattern.compile("[[\\d{1,2}]|[\\d[0-2]\\d[0-5]\\d[0-5]]]\\.[[\\d{1,2}|\\d[0-2]\\d[0-5]\\d[0-5]]]");
+        Pattern p = Pattern.compile("\\b(([01]?\\d?\\d|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d?\\d|2[0-4]\\d|25[0-5])\\b");
+        Matcher matcher = p.matcher(ip);
+
+
+        assertTrue(matcher.find());
     }
 }

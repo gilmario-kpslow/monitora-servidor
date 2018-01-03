@@ -1,6 +1,5 @@
-package br.gov.ce.caucaia.sefin.servidor;
+package br.gov.ce.caucaia.sefin.so;
 
-import br.gov.ce.caucaia.sefin.loger.LoggerMonitor;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -19,21 +18,20 @@ import javax.ws.rs.core.Response;
  *
  * @author gilmario
  */
-@Path("/servidor")
+@Path("/so")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Provider
-public class ServidorResource implements Serializable {
+public class SistemaOperacionalResource implements Serializable {
 
     @EJB
-    private ServidorServico servico;
+    private SistemaOperacionalServico servico;
 
     @GET
     public Response getServidores() {
         try {
             return Response.ok(servico.buscar()).build();
         } catch (Exception e) {
-            LoggerMonitor.LOG(e);
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -59,20 +57,20 @@ public class ServidorResource implements Serializable {
     }
 
     @POST
-    public Response add(Servidor servidor) {
+    public Response add(SistemaOperacional so) {
         try {
-            servico.salvar(servidor);
-            return Response.ok(servidor).build();
+            servico.salvar(so);
+            return Response.ok(so).build();
         } catch (Exception e) {
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PUT
-    public Response update(Servidor servidor) {
+    public Response update(SistemaOperacional so) {
         try {
-            servico.atualizar(servidor);
-            return Response.ok(servidor).build();
+            servico.atualizar(so);
+            return Response.ok(so).build();
         } catch (Exception e) {
             return Response.accepted("ERROR").status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
