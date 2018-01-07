@@ -1,10 +1,8 @@
 package br.gov.ce.caucaia.sefin.servico.testadores;
 
-import br.gov.ce.caucaia.sefin.DashBoard;
 import br.gov.ce.caucaia.sefin.servico.Servico;
 import br.gov.ce.caucaia.sefin.servico.StatusServico;
 import br.gov.ce.caucaia.sefin.configuracao.ConfiguracaoServico;
-import br.gov.ce.caucaia.sefin.configuracao.EstatisticaServicoServico;
 import br.gov.ce.caucaia.sefin.servico.ServicoServico;
 import br.gov.ce.caucaia.sefin.util.EnviaEmailUtil;
 import java.io.Serializable;
@@ -26,8 +24,6 @@ public class TestadorServico implements Serializable {
     @EJB
     private ServicoServico servicoServico;
     @EJB
-    private EstatisticaServicoServico ess;
-    @EJB
     private ConfiguracaoServico configuracaoServico;
     private EnviaEmailUtil emailUtil;
 
@@ -44,17 +40,17 @@ public class TestadorServico implements Serializable {
             if (!StatusServico.Ativo.equals(servico.getStatusServico())) {
                 servico.setStatusServico(StatusServico.Ativo);
                 servicoServico.atualizar(servico);
-                ess.notificarAtivacao(servico);
+                servicoServico.notificarAtivacao(servico);
                 connector.enviarMensagem("Servico " + servico.getNome() + " está ativo no servidor " + servico.getServidor().getNome());
-                emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servico " + servico.getNome() + " está ativo no servidor " + servico.getServidor().getNome());
+                //emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servico " + servico.getNome() + " está ativo no servidor " + servico.getServidor().getNome());
                 LOG.log(Level.INFO, "mensagem enviada");
             }
         } else if (!StatusServico.Inativo.equals(servico.getStatusServico())) {
             servico.setStatusServico(StatusServico.Inativo);
             servicoServico.atualizar(servico);
-            ess.notificarDesativacao(servico);
+            servicoServico.notificarDesativacao(servico);
             connector.enviarMensagem("Servico " + servico.getNome() + " está inativo no servidor " + servico.getServidor().getNome());
-            emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servico " + servico.getNome() + " está inativo no servidor " + servico.getServidor().getNome());
+            //emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servico " + servico.getNome() + " está inativo no servidor " + servico.getServidor().getNome());
             LOG.log(Level.INFO, "mensagem enviada");
         }
     }

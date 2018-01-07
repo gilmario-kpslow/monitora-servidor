@@ -6,6 +6,7 @@
 package br.gov.ce.caucaia.sefin;
 
 import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Assert;
@@ -26,7 +27,7 @@ public class DatasourceTeste {
 
     @Test
     public void testDataSourceIsBound() throws Exception {
-        Object ds = (Object) context.lookup("java:jboss/datasources/testeDS");
+        DataSource ds = (DataSource) context.lookup("java:jboss/datasources/testeDS");
         Assert.assertNotNull(ds);
     }
 }

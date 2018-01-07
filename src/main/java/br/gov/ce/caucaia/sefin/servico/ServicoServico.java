@@ -1,6 +1,8 @@
 package br.gov.ce.caucaia.sefin.servico;
 
-import br.gov.ce.caucaia.sefin.configuracao.EstatisticaServicoServico;
+import br.gov.ce.caucaia.sefin.estatistica.EstatisticaServico;
+import br.gov.ce.caucaia.sefin.estatistica.EstatisticaServicoDAO;
+import br.gov.ce.caucaia.sefin.infra.ServicoInterface;
 import br.gov.ce.caucaia.sefin.servidor.Servidor;
 import java.io.Serializable;
 import java.util.List;
@@ -19,11 +21,12 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
     @EJB
     private ServicoDAO dao;
     @EJB
-    private EstatisticaServicoServico estatisticaServicoServico;
+    private EstatisticaServicoDAO estatisticaDAO;
 
     @Override
-    public void excluir(Servico t) {
-        estatisticaServicoServico.excluirTodas(t);
+    public void excluir(Serializable id) {
+        Servico t = carregar(id);
+        estatisticaDAO.excluirTodas(t);
         dao.excluir(t);
     }
 
@@ -53,7 +56,7 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
     public void excluirTodos(Servidor t) {
         List<Servico> servicos = buscar(t);
         for (Servico s : servicos) {
-            estatisticaServicoServico.excluirTodas(s);
+            estatisticaDAO.excluirTodas(s);
         }
         dao.excluirTodos(t);
     }
@@ -71,6 +74,23 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
     public void excluir(Long id) {
         Servico servico = dao.carregar(Servico.class, id);
         dao.excluir(servico);
+    }
+
+    @Override
+    public List<Servico> listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void notificarAtivacao(Servico servico) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void notificarDesativacao(Servico servico) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<EstatisticaServico> buscar(Servico s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

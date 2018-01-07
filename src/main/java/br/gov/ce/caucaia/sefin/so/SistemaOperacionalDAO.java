@@ -1,6 +1,6 @@
 package br.gov.ce.caucaia.sefin.so;
 
-import br.gov.ce.caucaia.sefin.dao.DAO;
+import br.gov.ce.caucaia.sefin.infra.DAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;

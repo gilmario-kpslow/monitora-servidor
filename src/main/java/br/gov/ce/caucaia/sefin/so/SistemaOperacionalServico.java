@@ -1,6 +1,6 @@
 package br.gov.ce.caucaia.sefin.so;
 
-import br.gov.ce.caucaia.sefin.servico.ServicoInterface;
+import br.gov.ce.caucaia.sefin.infra.ServicoInterface;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -19,7 +19,8 @@ public class SistemaOperacionalServico implements ServicoInterface<SistemaOperac
     private SistemaOperacionalDAO dao;
 
     @Override
-    public void excluir(SistemaOperacional t) {
+    public void excluir(Serializable id) {
+        SistemaOperacional t = carregar(id);
         dao.excluir(t);
     }
 
@@ -38,10 +39,6 @@ public class SistemaOperacionalServico implements ServicoInterface<SistemaOperac
         dao.salvar(t);
     }
 
-    public List<SistemaOperacional> buscar() {
-        return dao.buscar();
-    }
-
     @Override
     public SistemaOperacional carregar(Serializable pk) {
         return dao.carregar(SistemaOperacional.class, pk);
@@ -49,6 +46,11 @@ public class SistemaOperacionalServico implements ServicoInterface<SistemaOperac
 
     public Object buscar(Integer limit, Integer offset) {
         return dao.buscar(limit, offset);
+    }
+
+    @Override
+    public List<SistemaOperacional> listar() {
+        return dao.buscar();
     }
 
 }

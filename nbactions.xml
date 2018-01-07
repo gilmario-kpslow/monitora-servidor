@@ -4,6 +4,7 @@
         <actionName>CUSTOM-runswarm</actionName>
         <displayName>runswarm</displayName>
         <goals>
+            <goal>clean</goal>
             <goal>wildfly-swarm:run</goal>
         </goals>
     </action>
@@ -14,5 +15,34 @@
                 <goal>docker:start</goal>
                 <goal>-Pdocker</goal>
             </goals>
+        </action>
+    <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>wildfly-swarm:run</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
+                <netbeans.deploy>true</netbeans.deploy>
+            </properties>
+        </action>
+    <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>wildfly-swarm:run</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy>true</netbeans.deploy>
+            </properties>
         </action> 
 </actions>

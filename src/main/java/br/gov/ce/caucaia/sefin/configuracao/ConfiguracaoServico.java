@@ -1,10 +1,8 @@
 package br.gov.ce.caucaia.sefin.configuracao;
 
-import br.gov.ce.caucaia.sefin.configuracao.ConfiguracaoDAO;
-import br.gov.ce.caucaia.sefin.configuracao.Configuracao;
-import br.gov.ce.caucaia.sefin.servico.ServicoInterface;
+import br.gov.ce.caucaia.sefin.infra.ServicoInterface;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -17,26 +15,12 @@ import javax.ejb.Stateless;
 @LocalBean
 public class ConfiguracaoServico implements ServicoInterface<Configuracao>, Serializable {
 
-    private Configuracao configuracao;
     @EJB
     private ConfiguracaoDAO dao;
 
-    @PostConstruct
-    public void inicializar() {
-        criarConfiguracao();
-    }
-
-    private void criarConfiguracao() {
-        configuracao = carregar(1L);
-        if (configuracao == null) {
-            configuracao = new Configuracao();
-            configuracao.setId(1L);
-            salvar(configuracao);
-        }
-    }
-
     @Override
-    public void excluir(Configuracao t) {
+    public void excluir(Serializable id) {
+        Configuracao t = carregar(id);
         dao.excluir(t);
     }
 
@@ -55,8 +39,9 @@ public class ConfiguracaoServico implements ServicoInterface<Configuracao>, Seri
         return dao.carregar(Configuracao.class, pk);
     }
 
-    public Configuracao getConfiguracao() {
-        return configuracao;
+    @Override
+    public List<Configuracao> listar() {
+        return dao.listar();
     }
 
 }

@@ -1,6 +1,6 @@
 package br.gov.ce.caucaia.sefin.estatistica;
 
-import br.gov.ce.caucaia.sefin.dao.DAO;
+import br.gov.ce.caucaia.sefin.infra.DAO;
 import br.gov.ce.caucaia.sefin.servico.Servico;
 import java.io.Serializable;
 import java.util.List;

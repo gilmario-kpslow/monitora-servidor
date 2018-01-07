@@ -1,9 +1,7 @@
 package br.gov.ce.caucaia.sefin.servidor;
 
-import br.gov.ce.caucaia.sefin.DashBoard;
 import br.gov.ce.caucaia.sefin.util.TestadorDePing;
 import br.gov.ce.caucaia.sefin.configuracao.ConfiguracaoServico;
-import br.gov.ce.caucaia.sefin.configuracao.EstatisticaServidorServico;
 import br.gov.ce.caucaia.sefin.servico.testadores.Connector;
 import br.gov.ce.caucaia.sefin.util.EnviaEmailUtil;
 import java.io.IOException;
@@ -13,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.mail.MessagingException;
 
 /**
@@ -28,11 +25,7 @@ public class TestadorServidor implements Serializable {
     private ServidorServico servico;
     @EJB
     private Connector connector;
-    @Inject
-    private DashBoard dashBoard;
     private static final Logger LOG = Logger.getLogger(TestadorServidor.class.getName());
-    @EJB
-    private EstatisticaServidorServico ess;
     private EnviaEmailUtil emailUtil;
     @EJB
     private ConfiguracaoServico configuracaoServico;
@@ -48,19 +41,17 @@ public class TestadorServidor implements Serializable {
             if (!StatusServidor.Ativo.equals(servidor.getStatus())) {
                 servidor.setStatus(StatusServidor.Ativo);
                 servico.atualizar(servidor);
-                dashBoard.atualizar();
-                ess.notificarAtivacao(servidor);
+                servico.notificarAtivacao(servidor);
                 connector.enviarMensagem("Servidor " + servidor.getNome() + " está ativo");
-                emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servidor " + servidor.getNome() + " está ativo");
+                //emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servidor " + servidor.getNome() + " está ativo");
                 LOG.log(Level.INFO, "mensagem enviada");
             }
         } else if (!StatusServidor.Inativo.equals(servidor.getStatus())) {
             servidor.setStatus(StatusServidor.Inativo);
             servico.atualizar(servidor);
-            dashBoard.atualizar();
-            ess.notificarDesativacao(servidor);
+            servico.notificarDesativacao(servidor);
             connector.enviarMensagem("Servidor " + servidor.getNome() + " offline");
-            emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servidor " + servidor.getNome() + " está inativo");
+            //emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servidor " + servidor.getNome() + " está inativo");
             LOG.log(Level.INFO, "mensagem enviada");
         }
     }

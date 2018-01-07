@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -14,9 +16,10 @@ import javax.persistence.Id;
 public class Configuracao implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 1024)
-    private String destinatarios;
+    @Column()
+    private String email;
 
     public Configuracao() {
     }
@@ -33,12 +36,12 @@ public class Configuracao implements Serializable {
         this.id = id;
     }
 
-    public String getDestinatarios() {
-        return destinatarios;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDestinatarios(String destinatarios) {
-        this.destinatarios = destinatarios;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

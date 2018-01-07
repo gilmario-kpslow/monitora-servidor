@@ -9,6 +9,7 @@
     <class>br.gov.ce.caucaia.sefin.servico.Servico</class>
     <class>br.gov.ce.caucaia.sefin.servidor.Servidor</class>
     <class>br.gov.ce.caucaia.sefin.so.SistemaOperacional</class>
+    <class>br.gov.ce.caucaia.sefin.processador.Processador</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

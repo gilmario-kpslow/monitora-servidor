@@ -1,5 +1,6 @@
 package br.gov.ce.caucaia.sefin.servidor;
 
+import br.gov.ce.caucaia.sefin.processador.Processador;
 import br.gov.ce.caucaia.sefin.so.SistemaOperacional;
 import java.io.IOException;
 import java.io.Serializable;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 import javax.mail.MessagingException;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -39,12 +41,13 @@ public class Servidor implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = false)
     private SistemaOperacional sistemaOperacional;
-    @Column(nullable = false)
-    private String hd;
-    @Column(nullable = false)
-    private String memoria;
-    @Column(nullable = false)
-    private String processador;
+    @Embedded
+    private HD hd;
+    @Embedded
+    private Memoria memoria;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Processador processador;
     @Column(nullable = false)
     private Integer qtdProcessador;
     @Enumerated(EnumType.STRING)
@@ -74,27 +77,27 @@ public class Servidor implements Serializable {
         this.sistemaOperacional = sistemaOperacional;
     }
 
-    public String getHd() {
+    public HD getHd() {
         return hd;
     }
 
-    public void setHd(String hd) {
+    public void setHd(HD hd) {
         this.hd = hd;
     }
 
-    public String getMemoria() {
+    public Memoria getMemoria() {
         return memoria;
     }
 
-    public void setMemoria(String memoria) {
+    public void setMemoria(Memoria memoria) {
         this.memoria = memoria;
     }
 
-    public String getProcessador() {
+    public Processador getProcessador() {
         return processador;
     }
 
-    public void setProcessador(String processador) {
+    public void setProcessador(Processador processador) {
         this.processador = processador;
     }
 
@@ -168,7 +171,6 @@ public class Servidor implements Serializable {
         }
         this.ip = ip;
     }
-
 
     @Override
     public int hashCode() {
