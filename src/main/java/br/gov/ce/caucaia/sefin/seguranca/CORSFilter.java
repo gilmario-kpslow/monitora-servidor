@@ -1,6 +1,8 @@
 package br.gov.ce.caucaia.sefin.seguranca;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
@@ -22,6 +24,15 @@ public class CORSFilter implements ContainerResponseFilter {
         responseContext.getHeaders().add("Access-Control-Max-Age", "1209600");
         System.out.println(responseContext.getStatus());
         System.out.println(responseContext.getStatusInfo());
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(requestContext.getEntityStream()))) {
+            while (br.ready()) {
+                System.out.println(br.readLine());
+
+            }
+
+        }
+
     }
 
 }

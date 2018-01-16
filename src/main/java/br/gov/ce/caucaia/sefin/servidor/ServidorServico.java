@@ -27,8 +27,6 @@ public class ServidorServico implements ServicoInterface<Servidor>, Serializable
     @Override
     public void excluir(Serializable id) {
         Servidor t = carregar(id);
-        servicoServico.excluirTodos(t);
-        estatisticaDAO.excluirTodas(t);
         dao.excluir(t);
     }
 

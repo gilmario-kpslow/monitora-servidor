@@ -26,7 +26,6 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
     @Override
     public void excluir(Serializable id) {
         Servico t = carregar(id);
-        estatisticaDAO.excluirTodas(t);
         dao.excluir(t);
     }
 
@@ -53,14 +52,6 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
         return dao.buscarServidorAtivo();
     }
 
-    public void excluirTodos(Servidor t) {
-        List<Servico> servicos = buscar(t);
-        for (Servico s : servicos) {
-            estatisticaDAO.excluirTodas(s);
-        }
-        dao.excluirTodos(t);
-    }
-
     public List<Servico> buscarAtivos(Servidor s) {
         return dao.buscarServidorAtivo(s);
     }
@@ -78,7 +69,7 @@ public class ServicoServico implements ServicoInterface<Servico>, Serializable {
 
     @Override
     public List<Servico> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.buscarServidorAtivo();
     }
 
     public void notificarAtivacao(Servico servico) {
