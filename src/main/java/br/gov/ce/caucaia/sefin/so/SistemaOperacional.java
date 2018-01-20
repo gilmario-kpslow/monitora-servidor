@@ -20,8 +20,8 @@ import javax.persistence.Id;
 @Entity
 public class SistemaOperacional implements Serializable {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 30, unique = true)
     private String nome;
@@ -75,6 +75,5 @@ public class SistemaOperacional implements Serializable {
     public String toString() {
         return nome;
     }
-
 
 }

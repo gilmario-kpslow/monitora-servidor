@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.mail.MessagingException;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -38,14 +39,14 @@ public class Servidor implements Serializable {
     private String descricao;
     @Column(nullable = false)
     private String funcionalidade;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(nullable = false)
     private SistemaOperacional sistemaOperacional;
     @Embedded
     private HD hd;
     @Embedded
     private Memoria memoria;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(nullable = false)
     private Processador processador;
     @Column(nullable = false)

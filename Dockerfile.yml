@@ -1,8 +1,6 @@
-FROM maven:3.5-jdk-8
-LABEL maintainer="gilmariosoftware@gmail.com"
-COPY . /usr/src/app
-WORKDIR /usr/src/app
-VOLUME /home/gilmario/.m2 /root/.m2
+FROM openjdk:8-jre-alpine
+LABEL maintainer="gilmariokpslow"
+COPY ./target/testador-swarm.jar /usr/src/app.jar
+WORKDIR /usr/src/
 EXPOSE 8080
-RUN mvn clean install
-RUN mvn wildfly-swarm:run
+CMD java -jar app.jar -Djava.net.preferIPv4Stack=true

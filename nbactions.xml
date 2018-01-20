@@ -44,5 +44,18 @@
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>
             </properties>
+        </action>
+    <action>
+            <actionName>CUSTOM-debugswarm</actionName>
+            <displayName>debugswarm</displayName>
+            <goals>
+                <goal>wildfly-swarm:run</goal>
+                
+            </goals>
+            <properties>
+                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
+                <netbeans.deploy>true</netbeans.deploy>
+                <swarm.logging>DEBUG</swarm.logging>
+            </properties>
         </action> 
 </actions>
