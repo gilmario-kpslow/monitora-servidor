@@ -6,7 +6,7 @@ swarm:
     data-sources:
       testeDS:
         driver-name: postgresql
-        connection-url: jdbc:postgresql://172.18.0.1:5432/monitor
+        connection-url: jdbc:postgresql://localhost:5432/monitor
         user-name: postgres
         password: postgres
         valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
