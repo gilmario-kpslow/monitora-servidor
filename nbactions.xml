@@ -9,53 +9,19 @@
         </goals>
     </action>
     <action>
-            <actionName>CUSTOM-rundocker</actionName>
-            <displayName>rundocker</displayName>
-            <goals>
-                <goal>docker:start</goal>
-                <goal>-Pdocker</goal>
-            </goals>
-        </action>
-    <action>
-            <actionName>debug</actionName>
-            <packagings>
-                <packaging>war</packaging>
-                <packaging>ear</packaging>
-                <packaging>ejb</packaging>
-            </packagings>
-            <goals>
-                <goal>wildfly-swarm:run</goal>
-            </goals>
-            <properties>
-                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
-                <netbeans.deploy>true</netbeans.deploy>
-            </properties>
-        </action>
-    <action>
-            <actionName>run</actionName>
-            <packagings>
-                <packaging>war</packaging>
-                <packaging>ear</packaging>
-                <packaging>ejb</packaging>
-            </packagings>
-            <goals>
-                <goal>wildfly-swarm:run</goal>
-            </goals>
-            <properties>
-                <netbeans.deploy>true</netbeans.deploy>
-            </properties>
-        </action>
-    <action>
-            <actionName>CUSTOM-debugswarm</actionName>
-            <displayName>debugswarm</displayName>
-            <goals>
-                <goal>wildfly-swarm:run</goal>
-                
-            </goals>
-            <properties>
-                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
-                <netbeans.deploy>true</netbeans.deploy>
-                <swarm.logging>DEBUG</swarm.logging>
-            </properties>
-        </action> 
+        <actionName>CUSTOM-debugswarm</actionName>
+        <displayName>debugswarm</displayName>
+        <goals>
+            <goal>wildfly-swarm:run</goal>
+        </goals>
+        <properties>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</exec.args>
+            <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
+            <netbeans.deploy>true</netbeans.deploy>
+            <swarm.logging>DEBUG</swarm.logging>
+            <jpda.listen>true</jpda.listen>
+        </properties>
+    </action>
+    
+
 </actions>
