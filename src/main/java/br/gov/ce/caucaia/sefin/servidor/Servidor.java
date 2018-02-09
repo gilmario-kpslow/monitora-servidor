@@ -2,6 +2,7 @@ package br.gov.ce.caucaia.sefin.servidor;
 
 import br.gov.ce.caucaia.sefin.processador.Processador;
 import br.gov.ce.caucaia.sefin.so.SistemaOperacional;
+import br.gov.ce.caucaia.sefin.util.IP;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,6 +19,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -26,21 +30,28 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Servidor implements Serializable {
 
-    private static final String REGEX = "\\b(([01]?\\d?\\d|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d?\\d|2[0-4]\\d|25[0-5])\\b";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
+    @NotBlank
+    @IP(message = "Ip Inválido")
     private String ip;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 60)
+    @Length(max = 60, min = 3)
+    @NotBlank
     private String nome;
+    @NotBlank
+    @Length(max = 1048, min = 10)
     @Column(nullable = false, length = 1048)
     private String descricao;
     @Column(nullable = false)
+    @NotBlank
+    @Length(max = 255, min = 3)
     private String funcionalidade;
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(nullable = false)
+    @NotNull
     private SistemaOperacional sistemaOperacional;
     @Embedded
     private HD hd;
@@ -48,11 +59,14 @@ public class Servidor implements Serializable {
     private Memoria memoria;
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(nullable = false)
+    @NotNull
     private Processador processador;
     @Column(nullable = false)
+    @NotNull
     private Integer qtdProcessador;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull
     private TipoServidor tipo;
     @Enumerated(EnumType.STRING)
     private StatusServidor status;
@@ -167,9 +181,9 @@ public class Servidor implements Serializable {
     }
 
     public void setIp(String ip) throws Exception {
-        if (Objects.nonNull(ip) && !ip.matches(REGEX)) {
-            throw new Exception("Endereço de IP Inválido");
-        }
+        //if (Objects.nonNull(ip) && !ip.matches(REGEX)) {
+        //    throw new Exception("Endereço de IP Inválido");
+        //}
         this.ip = ip;
     }
 

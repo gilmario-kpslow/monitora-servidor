@@ -39,7 +39,7 @@ public class ServicoDAO extends DAO<Servico, Long> implements Serializable {
             CriteriaBuilder builder = getEm().getCriteriaBuilder();
             CriteriaQuery<Servico> query = builder.createQuery(Servico.class);
             Root<Servico> root = query.from(Servico.class);
-            query.where(builder.equal(root.get(Servico_.statusServico), StatusServico.Ativo));
+            query.where(builder.equal(root.get(Servico_.statusServico), StatusServico.ATIVO));
             query.orderBy(builder.asc(root.get(Servico_.nome)));
             return getEm().createQuery(query).getResultList();
         } catch (Exception ex) {
@@ -67,7 +67,7 @@ public class ServicoDAO extends DAO<Servico, Long> implements Serializable {
             Root<Servico> root = query.from(Servico.class);
             query.where(
                     builder.equal(root.get(Servico_.servidor), servidor),
-                    builder.equal(root.get(Servico_.statusServico), StatusServico.Ativo)
+                    builder.equal(root.get(Servico_.statusServico), StatusServico.ATIVO)
             );
             query.orderBy(builder.asc(root.get(Servico_.nome)));
             return getEm().createQuery(query).getResultList();

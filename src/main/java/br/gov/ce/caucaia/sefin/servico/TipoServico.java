@@ -10,7 +10,7 @@ import br.gov.ce.caucaia.sefin.servico.testadores.TestadorServicoInterface;
  */
 public enum TipoServico {
 
-    Web(new TestaServicoWeb()), Banco(new TestaSocket()), Outros(new TestaSocket());
+    WEB(new TestaServicoWeb()), BANCO(new TestaSocket()), OUTROS(new TestaSocket());
 
     private final TestadorServicoInterface testadorServico;
 
