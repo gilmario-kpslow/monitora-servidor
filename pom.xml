@@ -34,6 +34,12 @@
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>jaxrs-jaxb</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>asm-tree</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
@@ -136,4 +142,42 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>debug</id>
+            <build>
+                <finalName>testador</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.swarm</groupId>
+                        <artifactId>wildfly-swarm-plugin</artifactId>
+                        <version>${version.wildfly.swarm}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>package</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>start</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <debugPort>5005</debugPort>
+                            <properties>
+                                <swarm.debug.port>5005</swarm.debug.port>
+                            </properties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

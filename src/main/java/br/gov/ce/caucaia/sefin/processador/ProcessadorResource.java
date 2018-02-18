@@ -19,7 +19,7 @@ import javax.ws.rs.ext.Provider;
  *
  * @author gilmario
  */
-@Path("/processador")
+@Path("processador")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Provider

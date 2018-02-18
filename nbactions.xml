@@ -13,15 +13,31 @@
         <displayName>debugswarm</displayName>
         <goals>
             <goal>wildfly-swarm:run</goal>
+            <goal>-P=debug</goal>
         </goals>
         <properties>
-                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</exec.args>
-            <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
-            <netbeans.deploy>true</netbeans.deploy>
-            <swarm.logging>DEBUG</swarm.logging>
-            <jpda.listen>true</jpda.listen>
-        </properties>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=5005</exec.args>
+                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
+                <swarm.logging>DEBUG</swarm.logging>
+                <jpda.listen>true</jpda.listen>
+            </properties>
     </action>
+    <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>wildfly-swarm:debug</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
+                <netbeans.deploy>true</netbeans.deploy>
+                <exec.args>-Xverify:none -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n</exec.args>
+            </properties>
+        </action>
     
 
 </actions>
