@@ -6,6 +6,6 @@ package br.gov.ce.caucaia.sefin.servidor;
  */
 public enum StatusServidor {
 
-    Ativo, Inativo;
+    ATIVO, INATIVO;
 
 }

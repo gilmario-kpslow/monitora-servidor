@@ -73,7 +73,7 @@ public class Servidor implements Serializable {
     private LocalDate ultimoTeste;
 
     public Servidor() {
-        status = StatusServidor.Inativo;
+        status = StatusServidor.INATIVO;
     }
 
     public String getFuncionalidade() {

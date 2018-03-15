@@ -6,5 +6,5 @@ package br.gov.ce.caucaia.sefin.servidor;
  */
 public enum TipoServidor {
 
-    Host, Virtual
+    HOST, VIRTUAL
 }

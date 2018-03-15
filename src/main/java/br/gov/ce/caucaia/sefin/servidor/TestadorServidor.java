@@ -38,16 +38,16 @@ public class TestadorServidor implements Serializable {
         emailUtil = new EnviaEmailUtil();
         servidor.setUltimoTeste(LocalDate.now());
         if (ping.testaPing(servidor.getIp())) {
-            if (!StatusServidor.Ativo.equals(servidor.getStatus())) {
-                servidor.setStatus(StatusServidor.Ativo);
+            if (!StatusServidor.ATIVO.equals(servidor.getStatus())) {
+                servidor.setStatus(StatusServidor.ATIVO);
                 servico.atualizar(servidor);
                 servico.notificarAtivacao(servidor);
                 connector.enviarMensagem("Servidor " + servidor.getNome() + " está ativo");
                 //emailUtil.enviar(configuracaoServico.getConfiguracao().getDestinatarios(), "Log dos servidores", "Servidor " + servidor.getNome() + " está ativo");
                 LOG.log(Level.INFO, "mensagem enviada");
             }
-        } else if (!StatusServidor.Inativo.equals(servidor.getStatus())) {
-            servidor.setStatus(StatusServidor.Inativo);
+        } else if (!StatusServidor.INATIVO.equals(servidor.getStatus())) {
+            servidor.setStatus(StatusServidor.INATIVO);
             servico.atualizar(servidor);
             servico.notificarDesativacao(servidor);
             connector.enviarMensagem("Servidor " + servidor.getNome() + " offline");
